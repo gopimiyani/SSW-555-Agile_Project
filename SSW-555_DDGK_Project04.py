@@ -19,6 +19,6 @@ def verifyBirth(birthDateString, marriageDateString):
   birthDate=datetime.datetime(birth_yyyy, strptime(birth_mmm,'%b').tm_mon, birth_dd)
   marriageDate=datetime.datetime(marriage_yyyy, strptime(marriage_mmm,'%b').tm_mon, marriage_dd)
   
-  if(birthDate<marriageDate)
+  if birthDate<marriageDate:
   raise Exception('Birth date of child is older than marriage of parents!')
     
