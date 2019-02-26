@@ -8,21 +8,18 @@
          Dhaval Dongre
 """
 
-
 import sys
 from datetime import date
 from datetime import datetime
 
 from prettytable import PrettyTable
 FILENAME = 'SSW-555-Agile-Project-01_UserStories.ged'
-#FILENAME='Gopi Miyani_Family Tree_Project 01 copy.ged'
+#FILENAME='My-Family-27-Jan-2019-216.ged'
 
 x = PrettyTable()
 y = PrettyTable()
 
 allValidTags = ['NAME', 'SEX', 'FAMS', ' FAMC', 'MARR', 'BIRT', 'WIFE', 'HUSB', 'CHIL', 'DEAT', 'DIV', 'DATE', 'HEAD','TRLR', 'NOTE','INDI', 'FAM']
-
-
 
 
 
@@ -127,6 +124,14 @@ def gedcomParser(filename):
                             int(gedline.arg[0])
                         )
                         date_type = None
+
+                        Y=US07(gedline.arg)
+
+                        if Y == "true":
+                            print ("valid age")
+                        else:
+                            print ("unvalid age")
+
                     elif date_type == 'DEAT':
                         individualObject.deathDate = date(
                             int(gedline.arg[2]),
@@ -178,6 +183,7 @@ def gedcomParser(filename):
                             datetime.strptime(gedline.arg[1], '%b').month,
                             int(gedline.arg[0]))
                         date_type = None
+                        
           
             
             familyList.append(familyObject)
@@ -201,6 +207,7 @@ def printPrettyTable(individual, families):
         attrs = vars(line)
         x.add_row(attrs.values())
     print(x)
+    
     print("\nFamilies")
     y.field_names = ["ID","Married","Divorced","Husband ID","Husband Name","Wife ID","Wife Name","Children"]
     for line in families:
@@ -208,6 +215,47 @@ def printPrettyTable(individual, families):
         y.add_row(attrs.values())
     print(y)
 
+
+# ----------------------------- User story 7 ------------------------------------
+def US07(arg):
+    #print(arg[2]+" "+arg[1]+" "+arg[0])
+    x = datetime.now()
+    a = int(x.strftime("%Y")) - int(arg[2])
+    
+    if (arg[1]=="JAN"):
+        b=1
+    elif(arg[1]=="FEB"):
+        b=2
+    elif(arg[1]=="MAR"):
+        b=3
+    elif(arg[1]=="APR"):
+        b=4
+    elif(arg[1]=="MAY"):
+        b=5
+    elif(arg[1]=="JUN"):
+        b=6
+    elif(arg[1]=="JUL"):
+        b=7
+    elif(arg[1]=="AUG"):
+        b=8
+    elif(arg[1]=="SEP"):
+        b=9
+    elif(arg[1]=="OCT"):
+        b=10
+    elif(arg[1]=="NOV"):
+        b=11
+    elif(arg[1]=="DEC"):
+        b=12
+                            
+    if (b>int(x.strftime("%m"))) and arg[0]>x.strftime("%d"):
+        age = a                       
+    else:
+        age=a-1
+
+    if age<150:
+        return "true"
+    else:
+        return "false"
 
 
 # ----------------------------- MAIN METHOD -------------------------------------
@@ -222,6 +270,6 @@ def main():
 
 
 if __name__ == '__main__':
-    sys.stdout = open("SSW-555_DDGK_Project3_Output.txt","w")
+    #sys.stdout = open("SSW-555_DDGK_Project3_Output.txt","w")
     main()
-    sys.__stdout__.close()
+    #sys.__stdout__.close()
