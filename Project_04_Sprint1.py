@@ -109,23 +109,46 @@ error_locations = []
 from datetime import datetime
 
 
-##############################        USER STORIES        ########################################
+##############################       IMPLEMENTING  USER STORIES  START      ########################################
 
 
-# ------------------- US04 All MARRIAGE DATES MUST BE BEFORE DIVORCE DATE ---------------
+#------------------------------------ US 01 START ----------------------------------------
+
+
+#------------------------------------ US 01 END ------------------------------------------
+
+
+
+
+#------------------------------------ US 02 START ----------------------------------------
+
+
+#------------------------------------ US 02 END ------------------------------------------
+
+
+
+
+#------------------------------------ US 03 START ----------------------------------------
+
+
+#------------------------------------ US 03 END -----------------------------------------
+
+
+
+
+
+#------------------------------------ US 04 START -----------------------------------------
+
+## US04 All MARRIAGE DATES MUST BE BEFORE DIVORCE DATE
 
 def US04_marriage_before_divorce(families):
-   
     return_flag = True
     error_type = "US04"
     for family in families:
         if family.married!='NA' and family.divorced!='NA':
-          
-            
             if family.married > family.divorced:
                 error_descrip = "Divorce (" + str(family.divorced) + ") occurs before marriage (" +str(family.married)+")" 
                 error_location = [family.uid, family.husbandID, family.wifeID]
-                
                 print("\nError       User Story                            Description                         "
                               "                             Location")
                 print(('-' * 150)) 
@@ -134,40 +157,36 @@ def US04_marriage_before_divorce(families):
     return return_flag
 
 
-# ------------------- US05 All MARRIAGE DATES MUST BE BEFORE DEATH DATE ---------------
-def US05_marriage_before_death(individuals,families):
+#------------------------------------ US 04 END ------------------------------------------
 
+
+
+#------------------------------------ US 05 START -----------------------------------------
+    
+## US05 All MARRIAGE DATES MUST BE BEFORE DEATH DATE
+    
+def US05_marriage_before_death(individuals,families):
     return_flag = True
     error_type = "US05"
-  
     for family in families:
         if family.married:
             husband = None
             wife = None
-
             for indiv in individuals:
                 if indiv.uid == family.husbandID:
                     husband = indiv
                 if indiv.uid == family.wifeID:
                     wife = indiv
-
             if wife!=None:
-                
                 if wife.alive == False:
                     if family.married > wife.deathDate:
-                       
                         error_descrip = "Death of wife (" + str(wife.deathDate) + ") occurs before her marriage (" +str(family.married)+")"
                         error_location = [wife.uid]
                         print("\nError       User Story                            Description                         "
                               "                             Location")
                         print(('-' * 150)) 
                         report_error('ERROR',error_type, error_descrip, error_location)
-                        return_flag = False
-                        
-                        
-                        
-                        
-                        
+                        return_flag = False   
             if husband!=None:
                 if husband.alive == False:
                     if  family.married > husband.deathDate:
@@ -178,97 +197,68 @@ def US05_marriage_before_death(individuals,families):
                         print(('-' * 150)) 
                         report_error('ERROR',error_type, error_descrip, error_location)
                         return_flag = False
-
     return return_flag
 
-
-#------------------------------------ US 06 -----------------------------------------
-'''
-def US06(individual, families):
-    x.field_names = ["ID", "Name", "Gender","Birthday", "Alive", "Death", "Child", "Spouse"]
-    for line in individual:
-        attrs = vars(line)
-        x.add_row(attrs.values())
-        #print(x)
-
-    print("\nFamilies")
-    for line in families:
-        if(vars(line)['divorced'] != 'NA'):
-            print(vars(line)['husbandID'])
-            for linei in individual:
-                if vars(line)['husbandID'] == vars(linei)['uid']:
-                    
+#------------------------------------ US 05 END -------------------------------------------
 
 
 
-            print(vars(line)['wifeID'])
-'''
+
+#------------------------------------ US 06 START -----------------------------------------
 
 
-#------------------------------------ US 07 -----------------------------------------
-    
+#------------------------------------ US 06 END -------------------------------------------
+
+
+
+
+
+#------------------------------------ US 07 START -----------------------------------------
+
 def US07(individuals):
-    #print(arg[2]+" "+arg[1]+" "+arg[0])
     return_flag = True
     error_type = "US04"
     for individual in individuals:
-        
         birthDate=individual.birthday
         arg=birthDate
-        #print(int(arg.strftime("%d")))
         x = datetime.now()
-        #print(x.strftime("%Y"))
-        
-        a = int(x.strftime("%Y")) - int(arg.strftime("%Y"))
-       
-        arg1=int(arg.strftime("%m"))
-        
-        if (arg1==1):
-            b=1
-        elif(arg1==2):
-            b=2
-        elif(arg1==3):
-            b=3
-        elif(arg1==4):
-            b=4
-        elif(arg1==5):
-            b=5
-        elif(arg1==6):
-            b=6
-        elif(arg1==7):
-            b=7
-        elif(arg1==8):
-            b=8
-        elif(arg1==9):
-            b=9
-        elif(arg1==10):
-            b=10
-        elif(arg1==11):
-            b=11
-        elif(arg1==12):
-            b=12
-                                
-        if (b>int(x.strftime("%m"))) and int(arg.strftime("%d"))>int(x.strftime("%d")):
+        a = int(x.strftime("%Y")) - int(arg.strftime("%Y"))       
+        arg1=int(arg.strftime("%m"))                                      
+        if (arg1>int(x.strftime("%m"))) and int(arg.strftime("%d"))>int(x.strftime("%d")):
             age = a                       
         else:
             age=a-1
     
         if age>150:
-        
-
             error_descrip = "Age is more than 150"
-            error_location = [individual.uid]
-            
+            error_location = [individual.uid]            
             print("\nError       User Story                            Description                         "
-                          "                             Location")
+                         "                             Location")
             print(('-' * 150)) 
             report_error('ERROR',error_type, error_descrip, error_location)
             return_flag = False
- 
     return return_flag
 
+#------------------------------------ US 07 END -------------------------------------------
 
-#-----------------------------  STORY VALIDATION  -------------------------------------
+
+
+
+#------------------------------------ US 08 START -----------------------------------------
+
+
+#------------------------------------ US 08 END -------------------------------------------
+
+
+
+
+##############################       IMPLEMENTING  USER STORIES  END      ########################################
+    
+
+
+
+
+##############################       VALIDATING USER STORIES  START      #########################################
 def story_validation(individuals, families):
    
     print('\n================================================ Validating User Stories ===================================================\n')
@@ -300,11 +290,12 @@ def story_validation(individuals, families):
     #print("\n* * * * * * * * * * * * * * * *  * * * * * * * * * *         ERRORS         * * * * * * * * * * * * * * * * * * * * * * * \n")
     
     
-    
+##############################       VALIDATING USER STORIES  END      #########################################    
     
 
 
-# ------------------------------- REOPRT ERRORS -------------------------------------
+##############################       REPORTING ERRORS  START      #########################################
+
 def report_error(rtype, error_type, description, locations):
         
             
@@ -316,8 +307,10 @@ def report_error(rtype, error_type, description, locations):
         print(estr)
         error_locations.extend(locations)
         
-
-# ------------------------------  UNIT TEST ---------------------------------------
+##############################       REPORTING ERRORS  END      #########################################
+        
+        
+##############################       UNIT TEST  START      #########################################        
     
 import unittest
 import os
@@ -331,68 +324,17 @@ failFile = "fail/SSW-555-Agile-Project-01_UserStories.ged"
     
 class test_UserStories(unittest.TestCase):
     
+   
     
-    '''
-    def test1_birth_before_death(self):
-        individuals, _ = gedcomParser(passFile)
-        self.assertTrue(birth_before_death(individuals))
-
-    def test2_birth_before_death(self):
-        individuals, _ = gedcomParser(passFile)
-        self.assertEqual(birth_before_death(individuals),True)
-
-    def test3_birth_before_death(self):
-        individuals, _ = gedcomParser(passFile)
-        self.assertIsNot(birth_before_death(individuals),False)
-
-    def test4_birth_before_death(self):
-        individuals, _ = gedcomParser(failFile)
-        self.assertIsNotNone(birth_before_death(individuals))
-
-    def test5_birth_before_death(self):
-        individuals, _ = gedcomParser(passFile)
-        self.assertIs(birth_before_death(individuals),True)
-    '''  
-    
-    
-     # ---------------------------- TESTING US_04 : CASE 1 -------------------------------
+     # ------------------------------- TESTING US_04 -------------------------------------
     def test_US04(self):
         print("\n============================================  Performing Unit test on User Stories ==========================================\n")
         print('TESTING US_04...')
         individuals, families = gedcomParser(passFile)
         #self.assertTrue(US04_marriage_before_divorce(families))
         self.assertNotEqual(US04_marriage_before_divorce(families),True)
-        '''
-        for family in families:
-            if family.married:
-                husband = None
-                for indiv in individuals:
-                    if indiv.uid == family.husbandID:
-                        husband = indiv
-                if husband!= None and husband.alive != None:
-                    if husband.alive==False:
-                        self.assertNotEquals(husband.deathDate, family.married)
-        '''
-
-    # ---------------------------- TESTING US_04 : CASE 2 ---------------------------------
-    '''
-    def test_US04_2(self):
-        print('TESTING US_04 : CASE 2..')
-        individuals, families = gedcomParser(passFile)
-        #self.assertTrue(US04_marriage_before_divorce(families))
-        self.assertIs(US04_marriage_before_divorce(families),True)
-        
-        for family in families:
-            if family.married:
-                wife = None
-                for indiv in individuals:
-                    if indiv.uid == family.wifeID:
-                        wife = indiv
-                if wife!=None and wife.alive!=None:
-                    if wife.alive==False:
-                        self.assertNotEquals(wife.deathDate, family.married)
-    '''
-                        
+  
+             
     # --------------------------- TESTING US_05 -------------------------------------------
     def test_US05(self):
         print('TESTING US_05...')
@@ -401,13 +343,21 @@ class test_UserStories(unittest.TestCase):
         #self.assertContains(response, 'pagination', html=True)
         self.assertNotEqual(US05_marriage_before_death(individuals,families),True)
         
-
-#----------------------- MAIN  METHOD ---------------------------------------
         
+        
+##############################       UNIT TEST  END      #########################################        
+        
+
+
+##############################       MAIN METHOD START    #########################################                
+       
         
 if __name__ == '__main__': 
     #countErrors=0
     individuals, families=gedcomParser(FILENAME)
     story_validation(individuals, families)
     
-    unittest.main()         
+    #unittest.main()        
+    
+    
+##############################       MAIN METHOD END    #########################################  
