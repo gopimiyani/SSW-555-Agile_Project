@@ -424,7 +424,24 @@ failFile = "SSW-555-Agile-Project-01_UserStories_Err.ged"
 
 
 class test_UserStories(unittest.TestCase):
+# ------------------------------- TESTING US_02 -------------------------------------
+    def test_US02(self):
+        print("\n======================Performing Unit test on User Stories ================\n")
+        print('TESTING US_02...')
+        individuals, families = gedcomParser(passFile)
+        self.assertEqual(US02_birth_before_marriage(individuals,families), True)
+        individuals, families = gedcomParser(failFile)
+        self.assertEqual(US02_birth_before_marriage(individuals,families), False)
 
+# ------------------------------- TESTING US_03 -------------------------------------
+
+    def test_US03(self):
+        print("\n======================Performing Unit test on User Stories ================\n")
+        print('TESTING US_03...')
+        individuals = gedcomParser(passFile)
+        self.assertEqual(US03_birth_before_death(individuals), True)
+        individuals = gedcomParser(failFile)
+        self.assertEqual(US03_birth_before_death(individuals), False)
      # ------------------------------- TESTING US_04 -------------------------------------
     def test_US04(self):
         print("\n============================================  Performing Unit test on User Stories ==========================================\n")
