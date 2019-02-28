@@ -251,8 +251,6 @@ def US06_Divorce_before_death(individual, families):
     for line in families:
 
         if(line.divorced != 'NA'):
-            print(line.husbandID)
-
             for linei in individual:
                 if line.husbandID == linei.uid:
                     if linei.deathDate == 'NA':
@@ -282,7 +280,6 @@ def US06_Divorce_before_death(individual, families):
                             return_flag = False
 
                 if line.wifeID == linei.uid:
-                    print(line.wifeID)
                     if linei.deathDate == 'NA':
                         return_flag = True
 
@@ -436,7 +433,6 @@ class test_UserStories(unittest.TestCase):
 # ------------------------------- TESTING US_03 -------------------------------------
 
     def test_US03(self):
-        print("\n======================Performing Unit test on User Stories ================\n")
         print('TESTING US_03...')
         individuals, families = gedcomParser(passFile)
         self.assertEqual(US03_birth_before_death(individuals), True)
@@ -444,7 +440,6 @@ class test_UserStories(unittest.TestCase):
         self.assertEqual(US03_birth_before_death(individuals), False)
      # ------------------------------- TESTING US_04 -------------------------------------
     def test_US04(self):
-        print("\n============================================  Performing Unit test on User Stories ==========================================\n")
         print('TESTING US_04...')
         individuals, families = gedcomParser(failFile)
         #self.assertTrue(US04_marriage_before_divorce(families))
