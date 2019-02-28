@@ -438,9 +438,9 @@ class test_UserStories(unittest.TestCase):
     def test_US03(self):
         print("\n======================Performing Unit test on User Stories ================\n")
         print('TESTING US_03...')
-        individuals = gedcomParser(passFile)
+        individuals, families = gedcomParser(passFile)
         self.assertEqual(US03_birth_before_death(individuals), True)
-        individuals = gedcomParser(failFile)
+        individuals, families = gedcomParser(failFile)
         self.assertEqual(US03_birth_before_death(individuals), False)
      # ------------------------------- TESTING US_04 -------------------------------------
     def test_US04(self):
