@@ -442,6 +442,22 @@ class test_UserStories(unittest.TestCase):
         #self.assertContains(response, 'pagination', html=True)
         self.assertNotEqual(US05_marriage_before_death(
             individuals, families), True)
+ # --------------------------- TESTING US_05 -------------------------------------------
+
+    def test_US06(self):
+        print('TESTING US_06...')
+        individuals, families = gedcomParser(passFile)
+        self.assertTrue(US06_Divorce_before_death(individuals, families))
+        individuals, families = gedcomParser(failFile)
+        self.assertFalse(US06_Divorce_before_death(individuals, families))
+
+    def test_US07(self):
+        print('TESTING US_07...')
+        individuals, families = gedcomParser(passFile)
+        self.assertTrue(US07(individuals))
+        individuals, families = gedcomParser(failFile)
+        self.assertFalse(US07(individuals))
+    
 
 
 ##############################       UNIT TEST  END      #########################################
@@ -453,8 +469,7 @@ if __name__ == '__main__':
     #countErrors=0
     individuals, families = gedcomParser(FILENAME)
     story_validation(individuals, families)
-
-    #unittest.main()
+    unittest.main()
 
 
 ##############################       MAIN METHOD END    #########################################
