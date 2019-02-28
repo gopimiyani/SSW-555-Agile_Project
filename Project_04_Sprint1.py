@@ -106,6 +106,7 @@ class familyClass(object):
 
 '''
 FILENAME = 'SSW-555-Agile-Project-01_UserStories.ged'
+#FILENAME = 'SSW-555-Agile-Project-01_UserStories_Err.ged'
 error_locations = []
 #from datetime import date
 
@@ -121,12 +122,53 @@ error_locations = []
 
 #------------------------------------ US 02 START ----------------------------------------
 
+## US02 All BIRTH DATES MUST BE BEFORE MARRIAGE 
+def US02_birth_before_marriage(individuals,families):
+    return_flag = True
+    error_type = "US02"
+    for family in families:
+        if family.married != 'NA':
+            husband = family.husbandID
+            wife = family.wifeID
+            for individual in individuals:                  
+                if individual.uid == wife:
+                    if individual.birthday > family.married:
+                        error_descrip = "Birth of wife (" + str(individual.birthday) + ") occurs before her marriage (" +str(family.married)+")"
+                        error_location = [wife]
+                        print("\nError       User Story                            Description                         "
+                            "                             Location")
+                        print(('-' * 150)) 
+                        report_error('ERROR',error_type, error_descrip, error_location)
+                        return_flag = False
+                if individual.uid == family.husbandID:
+                    if individual.birthday > family.married:
+                        error_descrip = "Birth of Husband ("+str(individual.birthday)+") occurs before his marriage ("+str(family.married)+")"
+                        error_location = [husband]
+                        print("\nError       User Story                            Description                         "
+                            "                             Location")
+                        print(('-' * 150)) 
+                        report_error('ERROR',error_type, error_descrip, error_location)
+                        return_flag = False
+    return return_flag
 
 #------------------------------------ US 02 END ------------------------------------------
 
-
 #------------------------------------ US 03 START ----------------------------------------
 
+## US03 All BIRTH DATES MUST BE BEFORE DEATH DATE
+def US03_birth_before_death(individuals):
+    return_flag = True
+    error_type = "US03"
+    for individual in individuals:   
+        if individual.deathDate!='NA' and individual.birthday!='NA':
+            if individual.birthday > individual.deathDate: 
+                error_descrip = "Death (" + str(individual.deathDate) + ") occurs before Birthday (" +str(individual.birthday)+")" 
+                error_location = [individual.uid]
+                print('nError User Story Description" "Location')
+                print(('-' * 150)) 
+                report_error('ERROR',error_type, error_descrip, error_location)
+                return_flag = False
+    return return_flag
 
 #------------------------------------ US 03 END -----------------------------------------
 
@@ -313,11 +355,21 @@ def story_validation(individuals, families):
 
     print('\n================================================ Validating User Stories ===================================================\n')
 
+    returnFlag_US02 = US02_birth_before_marriage(individuals,families)
+    returnFlag_US03 = US03_birth_before_death(individuals)
     returnFlag_US04 = US04_marriage_before_divorce(families)
     returnFlag_US05 = US05_marriage_before_death(individuals, families)
     returnFlag_US06 = US06_Divorce_before_death(individuals, families)
     returnFlag_US07 = US07(individuals)
 
+    if returnFlag_US02==True:
+        print('\n\nUS02 >> No Bugs Encountered.')
+    else:
+        print('\n\nUS02 >> Errors Found!!\n')
+    if returnFlag_US03==True:
+        print('\n\nUS03 >> No Bugs Encountered.')
+    else:
+        print('\n\nUS03 >> Errors Found!!\n')
     if returnFlag_US04 == True:
         print('\n\nUS04 >> No Bugs Encountered.')
     else:
