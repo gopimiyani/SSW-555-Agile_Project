@@ -115,7 +115,58 @@ error_locations = []
 
 
 #------------------------------------ US 01 START ----------------------------------------
+##All dates should not be after current date
+def US01_dates_before_currentDate(individuals,families):
+    return_flag = True
+    error_type = "US01"
+    today=date.today()
 
+    for family in families:
+        if family.married != 'NA' or family.divorced != 'NA':
+            if family.married > today:
+                error_descrip = "Marriage date (" + str(family.married) + \
+                    ") should not occur after today (" + str(today)+")"
+                error_location = [family.uid, family.husbandID, family.wifeID]
+                print("\nError       User Story                            Description                         "
+                      "                             Location")
+                print(('-' * 150))
+                report_error('ERROR', error_type,
+                             error_descrip, error_location)
+                return_flag = False
+
+            if family.divorced > today:
+                error_descrip = "Divorce date (" + str(family.divorced) + \
+                    ") should not occur after today (" + str(today)+")"
+                error_location = [family.uid, family.husbandID, family.wifeID]
+                print("\nError       User Story                            Description                         "
+                      "                             Location")
+                print(('-' * 150))
+                report_error('ERROR', error_type,
+                             error_descrip, error_location)
+                return_flag = False    
+
+    
+    for individual in individuals:   
+        if individual.deathDate!='NA' or individual.birthday!='NA':
+            if individual.birthday > today: 
+                error_descrip = "Birthday date (" + str(individual.birthday) + \
+                    ") should not occur after today (" + str(today)+")" 
+                error_location = [individual.uid]
+                print('nError User Story Description" "Location')
+                print(('-' * 150)) 
+                report_error('ERROR',error_type, error_descrip, error_location)
+                return_flag = False
+
+            if individual.deathDate > today: 
+                error_descrip = "Death date (" + str(individual.deathDate) + \
+                    ") should not occur after today (" + str(today)+")" 
+                error_location = [individual.uid]
+                print('nError User Story Description" "Location')
+                print(('-' * 150)) 
+                report_error('ERROR',error_type, error_descrip, error_location)
+                return_flag = False                
+
+    return return_flag
 
 #------------------------------------ US 01 END ------------------------------------------
 
@@ -341,6 +392,26 @@ def US07(individuals):
 #------------------------------------ US 08 START -----------------------------------------
 
 
+def US08_childbirth_after_marriage(individuals,families):
+    return_flag = True
+    error_type = "US08"
+    for family in families:
+        if family.married != 'NA' and family.children:
+            husband = family.husbandID
+            wife = family.wifeID
+            for individual in individuals:                  
+                if individual.uid in family.children:
+                    if individual.birthday < family.married:
+                        error_descrip = "Birth of child (" + str(individual.birthday) + ") cannot occur before marriage (" +str(family.married)+")"
+                        error_location = [individual.uid,family.uid]
+                        print("\nError       User Story                            Description                         "
+                            "                             Location")
+                        print(('-' * 150)) 
+                        report_error('ERROR',error_type, error_descrip, error_location)
+                        return_flag = False
+                
+    return return_flag
+
 #------------------------------------ US 08 END -------------------------------------------
 
 
@@ -352,12 +423,19 @@ def story_validation(individuals, families):
 
     print('\n================================================ Validating User Stories ===================================================\n')
 
+    returnFlag_US01 = US01_dates_before_currentDate(individuals, families)
     returnFlag_US02 = US02_birth_before_marriage(individuals,families)
     returnFlag_US03 = US03_birth_before_death(individuals)
     returnFlag_US04 = US04_marriage_before_divorce(families)
     returnFlag_US05 = US05_marriage_before_death(individuals, families)
     returnFlag_US06 = US06_Divorce_before_death(individuals, families)
     returnFlag_US07 = US07(individuals)
+    returnFlag_US08 = US08_childbirth_after_marriage(individuals, families)
+
+if returnFlag_US01==True:
+        print('\n\nUS01 >> No Bugs Encountered.')
+    else:
+        print('\n\nUS01 >> Errors Found!!\n')
 
     if returnFlag_US02==True:
         print('\n\nUS02 >> No Bugs Encountered.')
@@ -389,6 +467,12 @@ def story_validation(individuals, families):
         print('\nUS07 >> No Bugs Encountered.')
     else:
         print('\nUS07 >> Errors Found!!\n')
+
+    if returnFlag_US08 == True:
+
+        print('\nUS08 >> No Bugs Encountered.')
+    else:
+        print('\nUS08 >> Errors Found!!\n')    
     #print("\n* * * * * * * * * * * * * * * *  * * * * * * * * * *         ERRORS         * * * * * * * * * * * * * * * * * * * * * * * \n")
 
 
@@ -421,6 +505,16 @@ failFile = "SSW-555-Agile-Project-01_UserStories_Err.ged"
 
 
 class test_UserStories(unittest.TestCase):
+
+	# ------------------------------- TESTING US_01 -------------------------------------
+    def test_US01(self):
+        print("\n======================Performing Unit test on User Stories ================\n")
+        print('TESTING US_01...')
+        individuals, families = gedcomParser(passFile)
+        self.assertEqual(US01_dates_before_currentDate(individuals, families), True)
+        individuals, families = gedcomParser(failFile)
+        self.assertEqual(US01_dates_before_currentDate(individuals,families), False)
+
 # ------------------------------- TESTING US_02 -------------------------------------
     def test_US02(self):
         print("\n======================Performing Unit test on User Stories ================\n")
@@ -471,6 +565,14 @@ class test_UserStories(unittest.TestCase):
         self.assertFalse(US07(individuals))
     
 
+# ------------------------------- TESTING US_08 -------------------------------------
+    def test_US08(self):
+        print("\n======================Performing Unit test on User Stories ================\n")
+        print('TESTING US_08...')
+        individuals, families = gedcomParser(passFile)
+        self.assertEqual(US08_childbirth_after_marriage(individuals, families), True)
+        individuals, families = gedcomParser(failFile)
+        self.assertEqual(US08_childbirth_after_marriage(individuals,families), False)
 
 ##############################       UNIT TEST  END      #########################################
 
