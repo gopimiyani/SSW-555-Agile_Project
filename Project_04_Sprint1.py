@@ -4,6 +4,7 @@ import os
 import unittest
 from datetime import datetime
 from gedcomParser import gedcomParser
+from datetime import date
 """
 Created on Fri Feb 22 22:30:29 2019
 
