@@ -20,6 +20,14 @@ failFile = "SSW-555-Agile-Project-01_UserStories_Err.ged"
 
 
 class test_UserStories(unittest.TestCase):
+    
+# ------------------------------- TESTING US_01 -------------------------------------
+    def test_US01(self):
+        print("\n======================Performing Unit test on User Stories ================\n")
+        print('TESTING US_01...')
+        individuals, families = gedcomParser(failFile)
+        self.assertEqual(US01_dates_before_currentDate(individuals,families), False)
+        
 # ------------------------------- TESTING US_02 -------------------------------------
     def test_US02(self):
         print("\n======================Performing Unit test on User Stories ================\n")
@@ -69,6 +77,12 @@ class test_UserStories(unittest.TestCase):
         individuals, families = GedcomParser.gedcomParser(failFile)
         self.assertFalse(UserStories.US07(individuals))
     
+    def test_US08(self):
+        print("\n======================Performing Unit test on User Stories ================\n")
+        print('TESTING US_08...')
+        individuals, families = gedcomParser(failFile)
+        self.assertEqual(US08_childbirth_after_marriage(individuals,families), False)
+        
 
 
 ##############################       UNIT TEST  END      #########################################
