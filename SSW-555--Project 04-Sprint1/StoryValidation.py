@@ -11,13 +11,19 @@ def story_validation(individuals, families):
 
     print('\n================================================ Validating User Stories ===================================================\n')
 
+    returnFlag_US01 = UserStories.US01_dates_before_currentDate(individuals, families)
     returnFlag_US02 = UserStories.US02_birth_before_marriage(individuals,families)
     returnFlag_US03 = UserStories.US03_birth_before_death(individuals)
     returnFlag_US04 = UserStories.US04_marriage_before_divorce(families)
     returnFlag_US05 = UserStories.US05_marriage_before_death(individuals, families)
     returnFlag_US06 = UserStories.US06_Divorce_before_death(individuals, families)
     returnFlag_US07 = UserStories.US07(individuals)
-
+    returnFlag_US08 = UserStories.US08_childbirth_after_marriage(individuals, families)
+    
+    if returnFlag_US01==True:
+        print('\n\nUS01 >> No Bugs Encountered.')
+    else:
+        print('\n\nUS01 >> Errors Found!!\n')
     if returnFlag_US02==True:
         print('\n\nUS02 >> No Bugs Encountered.')
     else:
@@ -48,6 +54,11 @@ def story_validation(individuals, families):
         print('\nUS07 >> No Bugs Encountered.')
     else:
         print('\nUS07 >> Errors Found!!\n')
+        
+    if returnFlag_US08==True:
+        print('\n\nUS08 >> No Bugs Encountered.')
+    else:
+        print('\n\nUS08 >> Errors Found!!\n')
     #print("\n* * * * * * * * * * * * * * * *  * * * * * * * * * *         ERRORS         * * * * * * * * * * * * * * * * * * * * * * * \n")
 
 
