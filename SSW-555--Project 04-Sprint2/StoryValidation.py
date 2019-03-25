@@ -22,6 +22,8 @@ def story_validation(individuals, families):
     returnFlag_US06 = UserStories.US06_Divorce_before_death(individuals, families)
     returnFlag_US07 = UserStories.US07(individuals)
     returnFlag_US08 = UserStories.US08_childbirth_after_marriage(individuals, families)
+    returnFlag_US10 = UserStories.US10_marriage_age_14(individuals, families)
+    returnFlag_US11 = UserStories.US11_no_bigamy(individuals, families)
     returnFlag_US12 = UserStories.US12_parents_not_too_old(individuals, families)
     returnFlag_US13 = UserStories.US13_siblings_spacing(individuals, families)
     
@@ -29,8 +31,8 @@ def story_validation(individuals, families):
     print('\n======================================================= Errors in User Stories ============================================================\n')
     
    
-    returnFlags={'US02':returnFlag_US02,'US03':returnFlag_US03,'US04':returnFlag_US04,'US05':returnFlag_US05,
-                 'US06':returnFlag_US06,'US07':returnFlag_US07,'US12':returnFlag_US12,'US13':returnFlag_US13}
+    returnFlags={'US01':returnFlag_US01,'US02':returnFlag_US02,'US03':returnFlag_US03,'US04':returnFlag_US04,'US05':returnFlag_US05,
+                 'US06':returnFlag_US06,'US07':returnFlag_US07,'US08':returnFlag_US08,'US10':returnFlag_US10,'US11':returnFlag_US11,'US12':returnFlag_US12,'US13':returnFlag_US13}
                  
     errorsUserStories=[]
     for key,value in returnFlags.items():
