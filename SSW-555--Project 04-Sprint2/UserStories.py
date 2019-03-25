@@ -22,6 +22,58 @@ from UDFunctions import getAge ,getChilds,getBirthdate,dates_within
 ##############################       IMPLEMENTING  USER STORIES  START      #######################################
 
 #------------------------------------ US 01 START [Dhaval]--------------------------------
+def US01_dates_before_currentDate(individuals,families):
+    return_flag = True
+    error_type = "US01"
+    today=date.today()
+    #print("yoyoyoyoyo")
+
+    for family in families:   
+        if family.married != 'NA':
+           if family.married > today: 
+                error_descrip = "Marriage date (" + str(family.married) + \
+                    ") should not occur after today (" + str(today)+")" 
+                error_location = [family.uid, family.husbandID, family.wifeID]
+                print('nError User Story Description" "Location')
+                print(('-' * 150)) 
+                StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                return_flag = False
+                
+        if family.divorced!="NA":
+            if family.divorced>today: 
+                    error_descrip = "Divorce date (" + str(family.divorced) + \
+                        ") should not occur after today (" + str(today)+")" 
+                    error_location = [family.uid, family.husbandID, family.wifeID]
+                    print('nError User Story Description" "Location')
+                    print(('-' * 150)) 
+                    StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                    return_flag = False                
+
+    for individual in individuals:   
+        if individual.birthday!='NA':
+                #print("test"+return_flag)
+            if individual.birthday > today: 
+                error_descrip = "Birthday date (" + str(individual.birthday) + \
+                    ") should not occur after today (" + str(today)+")" 
+                error_location = [individual.uid]
+                print('nError User Story Description" "Location')
+                print(('-' * 150)) 
+                StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                return_flag = False
+                
+        if individual.deathDate!='NA':
+            if individual.deathDate > today: 
+                    error_descrip = "Death date (" + str(individual.deathDate) + \
+                        ") should not occur after today (" + str(today)+")" 
+                    error_location = [individual.uid]
+                    print('nError User Story Description" "Location')
+                    print(('-' * 150)) 
+                    StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                    return_flag = False                
+
+    #print("test"+return_flag)
+
+    return return_flag
 
 
 #------------------------------------ US 01 END ------------------------------------------
@@ -227,7 +279,25 @@ def US07(individuals):
 
 
 #------------------------------------ US 08 START [Dhaval]---------------------------------
-
+def US08_childbirth_after_marriage(individuals,families):
+    return_flag = True
+    error_type = "US08"
+    for family in families:
+        if family.married != 'NA' and family.children:
+            husband = family.husbandID
+            wife = family.wifeID
+            for individual in individuals:                  
+                if individual.uid in family.children:
+                    if individual.birthday < family.married:
+                        error_descrip = "Birth of child (" + str(individual.birthday) + ")"+str(individual.name)+ "cannot occur before marriage (" +str(family.married)+")"
+                        error_location = [individual.uid,family.uid]
+                        print("\nError       User Story                            Description                         "
+                            "                             Location")
+                        print(('-' * 150)) 
+                        StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                        return_flag = False
+                
+    return return_flag
 
 #------------------------------------ US 08 END -------------------------------------------
     
