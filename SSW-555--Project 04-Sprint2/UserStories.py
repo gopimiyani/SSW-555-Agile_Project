@@ -37,7 +37,7 @@ def US01_dates_before_currentDate(individuals,families):
                 error_location = [family.uid, family.husbandID, family.wifeID]
                 print('nError User Story Description" "Location')
                 print(('-' * 150)) 
-                StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                report_error('ERROR',error_type, error_descrip, error_location)
                 return_flag = False
                 
         if family.divorced!="NA":
@@ -47,7 +47,7 @@ def US01_dates_before_currentDate(individuals,families):
                     error_location = [family.uid, family.husbandID, family.wifeID]
                     print('nError User Story Description" "Location')
                     print(('-' * 150)) 
-                    StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                    report_error('ERROR',error_type, error_descrip, error_location)
                     return_flag = False                
 
     for individual in individuals:   
@@ -59,7 +59,7 @@ def US01_dates_before_currentDate(individuals,families):
                 error_location = [individual.uid]
                 print('nError User Story Description" "Location')
                 print(('-' * 150)) 
-                StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                report_error('ERROR',error_type, error_descrip, error_location)
                 return_flag = False
                 
         if individual.deathDate!='NA':
@@ -69,13 +69,12 @@ def US01_dates_before_currentDate(individuals,families):
                     error_location = [individual.uid]
                     print('nError User Story Description" "Location')
                     print(('-' * 150)) 
-                    StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                    report_error('ERROR',error_type, error_descrip, error_location)
                     return_flag = False                
 
     #print("test"+return_flag)
 
     return return_flag
-
 
 #------------------------------------ US 01 END ------------------------------------------
 
@@ -295,7 +294,7 @@ def US08_childbirth_after_marriage(individuals,families):
                         print("\nError       User Story                            Description                         "
                             "                             Location")
                         print(('-' * 150)) 
-                        StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
+                        report_error('ERROR',error_type, error_descrip, error_location)
                         return_flag = False
                 
     return return_flag
@@ -311,14 +310,64 @@ def US08_childbirth_after_marriage(individuals,families):
 
 
 #------------------------------------ US 10 START [Dhaval]---------------------------------
+def US10_marriage_age_14(individuals,families):
+    return_flag = True
+    error_type = "US10"
+    #today=datetime.date.today()
+    for family in families:   
+      if family.married != 'NA':
+        #if family.deathDate!='NA' and individual.birthday!='NA':
+         #   if individual.birthday > individual.deathDate: 
+        for individual in individuals:
+            if individual.uid==family.husbandID:
+                return_flag =  not dates_within(getBirthdate(individual.uid),getFamily(individual.uid).married ,0,13,'years')
+                if return_flag==True:
+                    error_descrip = "Age during marriage less than 14 for husband! birth:"+str(getBirthdate(individual.uid))+" marriage:"+str(getFamily(individual.uid).married) 
+                    error_location = [individual.uid]
+                    report_error('ERROR',error_type, error_descrip, error_location)
 
+        for individual in individuals:
+            if individual.uid==family.wifeID:
+                return_flag =  not dates_within(getBirthdate(individual.uid),getFamily(individual.uid).married ,0,13,'years')
+                if return_flag==True:
+                    error_descrip = "Age during marriage less than 14 for wife! birth"+str(getBirthdate(individual.uid))+" marriage:"+str(getFamily(individual.uid).married) 
+                    error_location = [individual.uid]
+                    report_error('ERROR',error_type, error_descrip, error_location)
+                    return_flag = False
+
+    return return_flag
 
 #------------------------------------ US 10 END -------------------------------------------
     
 
 
 #------------------------------------ US 11 START [Dhaval]---------------------------------
+def US11_no_bigamy(individuals,families):
+    return_flag = True
+    error_type = "US11"
+    #today=datetime.date.today()
+    for family in families:   
+      if family.married != 'NA':
+        currentFamId=family.uid
+        for family2 in families:
+          if currentFamId!=family2.uid:
+            if family.husbandID==family2.husbandID or family.wifeID==family2.wifeID:
+              if family.married<family2.married:
+                if family.divorced!='NA' and family.divorced>family2.married:
+                  return_flag==False
+                  error_descrip = "Bigamy detected!"
+                  error_location = [family.uid,family2.uid]
+                  report_error('ERROR',error_type, error_descrip, error_location)
 
+
+              if family.married>family2.married:
+                if family.divorced!='NA' and family.divorced<family2.married:
+                  return_flag==False
+                  error_descrip = "Bigamy detected!"
+                  error_location = [family.uid,family2.uid]
+                  report_error('ERROR',error_type, error_descrip, error_location)
+
+    return return_flag
 
 #------------------------------------ US 11 END -------------------------------------------
     
