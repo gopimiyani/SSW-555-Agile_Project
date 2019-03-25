@@ -25,8 +25,8 @@ class test_UserStories(unittest.TestCase):
     def test_US01(self):
         print("\n======================Performing Unit test on User Stories ================\n")
         print('TESTING US_01...')
-        individuals, families = gedcomParser(failFile)
-        self.assertEqual(US01_dates_before_currentDate(individuals,families), False)
+        individuals, families = GedcomParser.gedcomParser(failFile)
+        self.assertEqual(UserStories.US01_dates_before_currentDate(individuals,families), False)
         
 # ------------------------------- TESTING US_02 -------------------------------------
     def test_US02(self):
@@ -80,8 +80,8 @@ class test_UserStories(unittest.TestCase):
     def test_US08(self):
         print("\n======================Performing Unit test on User Stories ================\n")
         print('TESTING US_08...')
-        individuals, families = gedcomParser(failFile)
-        self.assertEqual(US08_childbirth_after_marriage(individuals,families), False)
+        individuals, families = GedcomParser.gedcomParser(failFile)
+        self.assertEqual(UserStories.US08_childbirth_after_marriage(individuals,families), False)
         
 
 
