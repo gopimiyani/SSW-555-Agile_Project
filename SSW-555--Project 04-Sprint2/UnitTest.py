@@ -83,9 +83,18 @@ class test_UserStories(unittest.TestCase):
         
         
 # --------------------------- TESTING US_10 -------------------------------------------
-        
-        
+    def test_US10(self):
+        print("\n======================Performing Unit test on User Stories ================\n")
+        print('TESTING US_10...')
+        individuals, families = GedcomParser.gedcomParser(failFile)
+        self.assertEqual(UserStories.US10_marriage_age_14(individuals,families), True)    
+    
 # --------------------------- TESTING US_11 -------------------------------------------
+    def test_US11(self):
+        print("\n======================Performing Unit test on User Stories ================\n")
+        print('TESTING US_11...')
+        individuals, families = GedcomParser.gedcomParser(failFile)
+        self.assertEqual(UserStories.US11_no_bigamy(individuals,families), True)    
         
        
        
