@@ -9,6 +9,7 @@ Created on Tue Mar  5 16:53:49 2019
 
 from datetime import datetime
 import StoryValidation
+from datetime import date
 
 ##############################       IMPLEMENTING  USER STORIES  START      ########################################
 
@@ -28,7 +29,7 @@ def US01_dates_before_currentDate(individuals,families):
                 error_location = [family.uid, family.husbandID, family.wifeID]
                 print('nError User Story Description" "Location')
                 print(('-' * 150)) 
-                report_error('ERROR',error_type, error_descrip, error_location)
+                StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
                 return_flag = False
                 
         if family.divorced!="NA":
@@ -38,7 +39,7 @@ def US01_dates_before_currentDate(individuals,families):
                     error_location = [family.uid, family.husbandID, family.wifeID]
                     print('nError User Story Description" "Location')
                     print(('-' * 150)) 
-                    report_error('ERROR',error_type, error_descrip, error_location)
+                    StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
                     return_flag = False                
 
     for individual in individuals:   
@@ -50,7 +51,7 @@ def US01_dates_before_currentDate(individuals,families):
                 error_location = [individual.uid]
                 print('nError User Story Description" "Location')
                 print(('-' * 150)) 
-                report_error('ERROR',error_type, error_descrip, error_location)
+                StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
                 return_flag = False
                 
         if individual.deathDate!='NA':
@@ -60,7 +61,7 @@ def US01_dates_before_currentDate(individuals,families):
                     error_location = [individual.uid]
                     print('nError User Story Description" "Location')
                     print(('-' * 150)) 
-                    report_error('ERROR',error_type, error_descrip, error_location)
+                    StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
                     return_flag = False                
 
     #print("test"+return_flag)
@@ -304,7 +305,7 @@ def US08_childbirth_after_marriage(individuals,families):
                         print("\nError       User Story                            Description                         "
                             "                             Location")
                         print(('-' * 150)) 
-                        report_error('ERROR',error_type, error_descrip, error_location)
+                        StoryValidation.report_error('ERROR',error_type, error_descrip, error_location)
                         return_flag = False
                 
     return return_flag
