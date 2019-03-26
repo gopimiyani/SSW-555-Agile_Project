@@ -436,14 +436,60 @@ def US13_siblings_spacing(individuals, families):
     
 
 #------------------------------------ US 14 START [DEEP]----------------------------------
+def US14_Multiple_births(individuals, families):
+    return_flag = True
+    error_type = "US14"
+
+    for family in families:
+        birthdays = []
+        children = family.children
+        Number_of_children = len(children)
+        if Number_of_children > 6:
+            for child in children:
+                for individual in individuals:
+                    if (child==individual.uid):
+                        birthdays.append(individual.birthday)
+            pre = ""
+            count =0
+            for birthday in birthdays:
+                if(birthday==prev):
+                    count=count + 1
+
+                pre = birthday
+
+            if count > 6:
+                error_descrip = "Multiple births"
+                error_location = [family.uid]
+                print("\nError       User Story                            Description                         "                            "                             Location")
+                print(('-' * 150))
+                StoryValidation.report_error('ERROR', error_type, error_descrip, error_location)
+                return_flag = False 
+
+    return return_flag
 
 
 #------------------------------------ US 15 END ------------------------------------------
     
 #------------------------------------ US 15 START [DEEP]----------------------------------
+def US15_Fewer_than_15_siblings(families):
+    return_flag = True
+    error_type = "US15"
 
+    for family in families:
+        child = family.children
+        Number_of_children=len(child)
+        if Number_of_children > 15:
+            error_descrip = "More than 15 siblings"
+            error_location = [family.uid]
+            print("\nError       User Story                            Description                         "
+                "                             Location")
+            print(('-' * 150))
+            StoryValidation.report_error('ERROR', error_type, error_descrip, error_location)
+            return_flag = False
 
-#------------------------------------ US 16 END -------------------------------------------
+    return return_flag
+
+#------------------------------------ US 15 END -------------------------------------------
     
 #------------------------------------ US 16 START [KRUTARTH]--------------------------------
 
