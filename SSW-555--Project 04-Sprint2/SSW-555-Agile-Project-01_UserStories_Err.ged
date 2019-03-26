@@ -1,8 +1,8 @@
 0 HEAD
 1 SOUR Family Echo
 2 WWW http://www.familyecho.com/
-1 FILE Family 2
-1 DATE 27 FEB 2019
+1 FILE Family 3
+1 DATE 26 MAR 2019
 1 DEST ANSTFILE
 1 GEDC
 2 VERS 5.5.1
@@ -78,7 +78,7 @@
 2 _MARNM Trivedi
 1 SEX M
 1 BIRT
-2 DATE 10 MAY 2001
+2 DATE 11 MAY 2001
 1 FAMC @F1@
 0 @I8@ INDI
 1 NAME Arjun /Trivedi/
@@ -152,11 +152,143 @@
 1 BIRT
 2 DATE 9 OCT 2017
 1 FAMC @F4@
+0 @I15@ INDI
+1 NAME Maya /Trivedi/
+2 GIVN Maya
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 BIRT
+2 DATE 11 MAY 2001
+1 FAMC @F1@
+0 @I16@ INDI
+1 NAME Ram /Trivedi/
+2 GIVN Ram
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX M
+1 BIRT
+2 DATE 11 MAY 2001
+1 FAMC @F1@
+0 @I17@ INDI
+1 NAME Sita /Trivedi/
+2 GIVN Sita
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 BIRT
+2 DATE 11 MAY 2001
+1 FAMC @F1@
+0 @I18@ INDI
+1 NAME Savita /Trivedi/
+2 GIVN Savita
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 BIRT
+2 DATE 11 MAY 2001
+1 FAMC @F1@
+0 @I19@ INDI
+1 NAME Janita /Trivedi/
+2 GIVN Janita
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 BIRT
+2 DATE 11 MAY 2001
+1 FAMC @F1@
+0 @I20@ INDI
+1 NAME Bhanita /Trivedi/
+2 GIVN Bhanita
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 FAMC @F1@
+0 @I21@ INDI
+1 NAME Ranita /Trivedi/
+2 GIVN Ranita
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 FAMC @F1@
+0 @I22@ INDI
+1 NAME Lalita /Trivedi/
+2 GIVN Lalita
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 FAMC @F1@
+0 @I23@ INDI
+1 NAME Momata /Trivedi/
+2 GIVN Momata
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 FAMC @F1@
+0 @I24@ INDI
+1 NAME Ekta /Trivedi/
+2 GIVN Ekta
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 FAMC @F1@
+0 @I25@ INDI
+1 NAME Ramta /Trivedi/
+2 GIVN Ramta
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 FAMC @F1@
+0 @I26@ INDI
+1 NAME Gamta /Trivedi/
+2 GIVN Gamta
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 FAMC @F1@
+0 @I27@ INDI
+1 NAME Bhanta /Trivedi/
+2 GIVN Bhanta
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 FAMC @F1@
+0 @I28@ INDI
+1 NAME Ramta /Trivedi/
+2 GIVN Ramta
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 FAMC @F1@
+0 @I29@ INDI
+1 NAME Chanata /Trivedi/
+2 GIVN Chanata
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX M
+1 FAMC @F1@
+0 @I30@ INDI
+1 NAME Ganata /Trivedi/
+2 GIVN Ganata
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX M
+1 FAMC @F1@
 0 @F1@ FAM
 1 HUSB @I1@
 1 WIFE @I2@
 1 CHIL @I7@
 1 CHIL @I8@
+1 CHIL @I15@
+1 CHIL @I16@
+1 CHIL @I17@
+1 CHIL @I18@
+1 CHIL @I19@
+1 CHIL @I20@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I23@
+1 CHIL @I24@
+1 CHIL @I25@
+1 CHIL @I26@
+1 CHIL @I27@
+1 CHIL @I28@
+1 CHIL @I29@
+1 CHIL @I30@
 1 MARR
 2 DATE 7 JUL 1998
 2 PLAC Mumbai
