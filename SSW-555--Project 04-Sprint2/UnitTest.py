@@ -127,8 +127,21 @@ class test_UserStories(unittest.TestCase):
         self.assertFalse(UserStories.US13_siblings_spacing(individuals,families))
         
 # --------------------------- TESTING US_14 -------------------------------------------
-        
+def test_US14(self):
+        print('TESTING US_14...')
+        individuals, families = GedcomParser.gedcomParser(passFile)
+        self.assertTrue(UserStories.US14_Multiple_births(individuals, families))
+        individuals, families = GedcomParser.gedcomParser(failFile)
+        self.assertFalse(UserStories.US14_Multiple_births(individuals, families))
+
 # --------------------------- TESTING US_15 -------------------------------------------
+    def test_US15(self):
+        print('TESTING US_15...')
+        individuals, families = GedcomParser.gedcomParser(passFile)
+        self.assertTrue(UserStories.US15_Fewer_than_15_siblings(families))
+        individuals, families = GedcomParser.gedcomParser(failFile)
+        self.assertFalse(UserStories.US15_Fewer_than_15_siblings(families))
+        
         
 # --------------------------- TESTING US_16 -------------------------------------------
         
