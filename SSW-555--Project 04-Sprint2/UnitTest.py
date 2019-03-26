@@ -81,7 +81,7 @@ class test_UserStories(unittest.TestCase):
 
 # --------------------------- TESTING US_08 -------------------------------------------
         
-     def test_US08(self):
+    def test_US08(self):
         print("\n======================Performing Unit test on User Stories ================\n")
         print('TESTING US_08...')
         individuals, families = GedcomParser.gedcomParser(failFile)
@@ -135,12 +135,12 @@ def test_US14(self):
         self.assertFalse(UserStories.US14_Multiple_births(individuals, families))
 
 # --------------------------- TESTING US_15 -------------------------------------------
-    def test_US15(self):
-        print('TESTING US_15...')
-        individuals, families = GedcomParser.gedcomParser(passFile)
-        self.assertTrue(UserStories.US15_Fewer_than_15_siblings(families))
-        individuals, families = GedcomParser.gedcomParser(failFile)
-        self.assertFalse(UserStories.US15_Fewer_than_15_siblings(families))
+def test_US15(self):
+    print('TESTING US_15...')
+    individuals, families = GedcomParser.gedcomParser(passFile)
+    self.assertTrue(UserStories.US15_Fewer_than_15_siblings(families))
+    individuals, families = GedcomParser.gedcomParser(failFile)
+    self.assertFalse(UserStories.US15_Fewer_than_15_siblings(families))
         
         
 # --------------------------- TESTING US_16 -------------------------------------------
