@@ -40,7 +40,7 @@ def story_validation(individuals, families):
     for key,value in returnFlags.items():
         if value==False:
             errorsUserStories.append(key)
-    print('\nErrors found in below User Stories:\n');
+    print('\nErrors found in below User Stories:\n')
     print(errorsUserStories)
     
    

@@ -28,12 +28,12 @@ def US13_siblings_spacing__NEW(individuals, families):
                 if child==individual.uid:
                     birthday_child=individual.birthday
                     birthdayOfChilds[individual.uid]=birthday_child
-        childslen=len(birthdayOfChilds);
+        childslen=len(birthdayOfChilds)
         for i in range(0,childslen):
             for j in range (i+1,childslen):
                     
                         return_flag = dates_within(birthdayOfChilds[childs[i]],birthdayOfChilds[childs[j]],8,'months')
-                        error_descrip = "Child (ID: " +str(childs[i])+", B'day: " +str(birthdayOfChilds[childs[i]]) + ") violates Sibling Space with other child (ID: " +str(childs[j]) +", B'day: " +str(birthdayOfChilds[childs[j]]) + ")";
+                        error_descrip = "Child (ID: " +str(childs[i])+", B'day: " +str(birthdayOfChilds[childs[i]]) + ") violates Sibling Space with other child (ID: " +str(childs[j]) +", B'day: " +str(birthdayOfChilds[childs[j]]) + ")"
                         
                         error_location = [family.wifeID]
                        
@@ -62,13 +62,13 @@ def US13_siblings_spacing__OLD(individuals, families):
                 if child==individual.uid:
                     birthday_child=individual.birthday
                     birthdayOfChilds[individual.uid]=birthday_child
-        childslen=len(birthdayOfChilds);
+        childslen=len(birthdayOfChilds)
         for i in range(0,childslen):
             for j in range (i+1,childslen):
                     birthdayDiff=abs((birthdayOfChilds[childs[i]]-birthdayOfChilds[childs[j]]).days)    
                    
                     if birthdayDiff>1 and birthdayDiff<240:
-                        error_descrip = "Child (ID: " +str(childs[i])+", B'day: " +str(birthdayOfChilds[childs[i]]) + ") violates Sibling Space with other child (ID: " +str(childs[j]) +", B'day: " +str(birthdayOfChilds[childs[j]]) + ")";
+                        error_descrip = "Child (ID: " +str(childs[i])+", B'day: " +str(birthdayOfChilds[childs[i]]) + ") violates Sibling Space with other child (ID: " +str(childs[j]) +", B'day: " +str(birthdayOfChilds[childs[j]]) + ")"
                         
                         error_location = [family.wifeID]
                        
