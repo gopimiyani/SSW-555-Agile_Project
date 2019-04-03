@@ -354,7 +354,7 @@ def US11_no_bigamy(individuals,families):
             if family.husbandID==family2.husbandID or family.wifeID==family2.wifeID:
               if family.married<family2.married:
                 if family.divorced!='NA' and family.divorced>family2.married:
-                  return_flag==False
+                  return_flag=False
                   error_descrip = "Bigamy detected!"
                   error_location = [family.uid,family2.uid]
                   report_error('ERROR',error_type, error_descrip, error_location)
@@ -362,7 +362,7 @@ def US11_no_bigamy(individuals,families):
 
               if family.married>family2.married:
                 if family.divorced!='NA' and family.divorced<family2.married:
-                  return_flag==False
+                  return_flag=False
                   error_descrip = "Bigamy detected!"
                   error_location = [family.uid,family2.uid]
                   report_error('ERROR',error_type, error_descrip, error_location)
