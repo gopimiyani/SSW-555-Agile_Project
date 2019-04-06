@@ -3,7 +3,6 @@
 """
 Created on Tue Mar  5 16:53:49 2019
 
-@author: gopi
 """
 
 
@@ -284,8 +283,8 @@ def US08_childbirth_after_marriage(individuals,families):
     error_type = "US08"
     for family in families:
         if family.married != 'NA' and family.children:
-            husband = family.husbandID
-            wife = family.wifeID
+            #husband = family.husbandID
+            #wife = family.wifeID
             for individual in individuals:                  
                 if individual.uid in family.children:
                     if individual.birthday < family.married:
@@ -304,10 +303,64 @@ def US08_childbirth_after_marriage(individuals,families):
 
 #------------------------------------ US 09 START [KRUTARTH]-------------------------------
 
+# US09 BIRTH BEFORE DEATH OF PARENTS
+
+def US09_birth_before_death_of_parents(individuals, families):
+   return_flag = True
+   error_type = "US09"
+   for family in families:
+       husband = family.husbandID
+       wife = family.wifeID
+       children = family.children
+       No_child = len(children)
+
+       if No_child > 0:
+           for child in children:
+               for individual in individuals:
+                   if husband == individual.uid:
+                       dad_death = individual.deathDate
+                   if wife == individual.uid:
+                       mom_death = individual.deathDate
+                   if child == individual.uid:
+                       child_birthday = individual.birthday
+               if dad_death != 'NA' and mom_death != 'NA' and child_birthday != 'NA':
+                   if child_birthday > dad_death or child_birthday > mom_death:
+                       error_descrip = "Death (" + str(individual.deathDate) + \
+                           ") occurs before Birthday (" + \
+                           str(individual.birthday)+")"
+                       error_location = [individual.uid]
+                       print('nError User Story Description" "Location')
+                       print(('-' * 150))
+                       report_error('ERROR', error_type,
+                                    error_descrip, error_location)
+                       return_flag = False
+
+               elif dad_death != 'NA' and mom_death == 'NA'and child_birthday != 'NA':
+                   if child_birthday > dad_death:
+                       error_descrip = "Death (" + str(individual.deathDate) + \
+                           ") occurs before Birthday (" + \
+                           str(individual.birthday)+")"
+                       error_location = [individual.uid]
+                       print('nError User Story Description" "Location')
+                       print(('-' * 150))
+                       report_error('ERROR', error_type,
+                                    error_descrip, error_location)
+                       return_flag = False
+               elif dad_death == 'NA' and mom_death != 'NA'and child_birthday != 'NA':
+                   if child_birthday > mom_death:
+                       error_descrip = "Death (" + str(individual.deathDate) + \
+                           ") occurs before Birthday (" + \
+                           str(individual.birthday)+")"
+                       error_location = [individual.uid]
+                       print('nError User Story Description" "Location')
+                       print(('-' * 150))
+                       report_error('ERROR', error_type,
+                                    error_descrip, error_location)
+                       return_flag = False
+
+   return return_flag
 
 #------------------------------------ US 09 END -------------------------------------------
-    
-
 
 #------------------------------------ US 10 START [Dhaval]---------------------------------
 def US10_marriage_age_14(individuals,families):
@@ -338,50 +391,43 @@ def US10_marriage_age_14(individuals,families):
     return return_flag
 
 #------------------------------------ US 10 END -------------------------------------------
-    
-
 
 #------------------------------------ US 11 START [Dhaval]---------------------------------
 def US11_no_bigamy(individuals,families):
-    return_flag = True
-    error_type = "US11"
-    #today=datetime.date.today()
-    for family in families:   
-      if family.married != 'NA':
-        currentFamId=family.uid
-        for family2 in families:
-          if currentFamId!=family2.uid:
-            if family.husbandID==family2.husbandID or family.wifeID==family2.wifeID:
-              if family.married<family2.married:
-                if family.divorced!='NA' and family.divorced>family2.married:
-                  return_flag=False
-                  error_descrip = "Bigamy detected!"
-                  error_location = [family.uid,family2.uid]
-                  report_error('ERROR',error_type, error_descrip, error_location)
+   return_flag = True
+   error_type = "US11"
+   #today=datetime.date.today()
+   for family in families:
+     if family.married != 'NA':
+       currentFamId=family.uid
+       for family2 in families:
+         if currentFamId!=family2.uid:
+           if family.husbandID==family2.husbandID or family.wifeID==family2.wifeID:
+             if family.married<family2.married:
+               if family.divorced!='NA' and family.divorced>family2.married:
+                 return_flag=False
+                 error_descrip = "Bigamy detected!"
+                 error_location = [family.uid,family2.uid]
+                 report_error('ERROR',error_type, error_descrip, error_location)
 
 
-              if family.married>family2.married:
-                if family.divorced!='NA' and family.divorced<family2.married:
-                  return_flag=False
-                  error_descrip = "Bigamy detected!"
-                  error_location = [family.uid,family2.uid]
-                  report_error('ERROR',error_type, error_descrip, error_location)
+             if family.married>family2.married:
+               if family.divorced!='NA' and family.divorced<family2.married:
+                 return_flag=False
+                 error_descrip = "Bigamy detected!"
+                 error_location = [family.uid,family2.uid]
+                 report_error('ERROR',error_type, error_descrip, error_location)
 
-    return return_flag
-
+   return return_flag
 #------------------------------------ US 11 END -------------------------------------------
     
-
-    
-#------------------------------------ US 12 START [GOPI]----------------------------------NEW AFTER REFACTORING
+#------------------------------------ US 12 START [GOPI]----------------------------------
 
 ## US12	Parents not too old	---Mother should be less than 60 years older than her children and father should be less than 80 years older than his children
 
 def US12_parents_not_too_old(individuals, families):
-    
     return_flag = True
     error_type = "US12"
-  
     for family in families:
         birthday_husband=getBirthdate(family.husbandID)
         birthday_wife=getBirthdate(family.wifeID)
@@ -394,7 +440,6 @@ def US12_parents_not_too_old(individuals, families):
         
         for childID,childBirthday in birthday_childs.items():
                 return_flag =  not dates_within(birthday_husband,childBirthday ,0,79,'years')
-                
                 if return_flag==False:
                     error_descrip = "Husband (Id, Age: " + family.husbandID + ', ' + str(getAge(family.husbandID)) + ") is elder than 80 years than his children(Id, Age: " + childID + ', ' + str(getAge(childID)) + ')\n'
                     error_location = [family.husbandID]
@@ -405,13 +450,9 @@ def US12_parents_not_too_old(individuals, families):
                     error_descrip = "Wife (Id, Age: "+ family.wifeID + ', '  + str(getAge(family.wifeID)) + ") is elder than 60 years than her children (Id, Age: " + childID + ', ' + str(getAge(childID)) + ')\n'
                     error_location = [family.wifeID]
                     report_error('ERROR',error_type, error_descrip, error_location)
-  
     return return_flag
 #----------------------------------- US 12 END -------------------------------------------
-    
-
-#------------------------------------ US 13 START [GOPI]-----------------------------------NEW AFTER REFACTORING
-    
+#------------------------------------ US 13 START [GOPI]-----------------------------------
 def US13_siblings_spacing(individuals, families):
     return_flag = True
     error_type = "US13"
@@ -422,19 +463,17 @@ def US13_siblings_spacing(individuals, families):
             for child in childs:
                 if child==individual.uid:
                     birthdayOfChilds[individual.uid]=getBirthdate(child)
-        childslen=len(birthdayOfChilds);
+        childslen=len(birthdayOfChilds)
         for i in range(0,childslen):
             for j in range (i+1,childslen):
                 return_flag = dates_within(birthdayOfChilds[childs[i]],birthdayOfChilds[childs[j]],2,243,'days')
                 if return_flag==False:
-                    error_descrip = "Child (ID: " +str(childs[i])+", B'day: " +str(birthdayOfChilds[childs[i]]) + ") is not 8 months apart from his/her sibling (ID: " +str(childs[j]) +", B'day: " +str(birthdayOfChilds[childs[j]]) + ")";
+                    error_descrip = "Child (ID: " +str(childs[i])+", B'day: " +str(birthdayOfChilds[childs[i]]) + ") is not 8 months apart from his/her sibling (ID: " +str(childs[j]) +", B'day: " +str(birthdayOfChilds[childs[j]]) + ")"
                     error_location = [childs[i]]
                     report_error('ERROR',error_type, error_descrip, error_location)
     return return_flag
 
 #------------------------------------ US 13 END ------------------------------------------
-    
-
 #------------------------------------ US 14 START [DEEP]----------------------------------
 def US14_Multiple_births(individuals, families):
     return_flag = True
@@ -444,59 +483,80 @@ def US14_Multiple_births(individuals, families):
         birthdays = []
         children = family.children
         Number_of_children = len(children)
-        if Number_of_children > 6:
+        if Number_of_children > 5:
             for child in children:
                 for individual in individuals:
-                    if (child==individual.uid):
+                    if (child == individual.uid):
                         birthdays.append(individual.birthday)
-            pre = ""
-            count =0
-            for birthday in birthdays:
-                if(birthday==prev):
-                    count=count + 1
-
-                pre = birthday
-
-            if count > 6:
-                error_descrip = "Multiple births"
-                error_location = [family.uid]
-                print("\nError       User Story                            Description                         "                            "                             Location")
-                print(('-' * 150))
-                StoryValidation.report_error('ERROR', error_type, error_descrip, error_location)
-                return_flag = False 
+                
+            for birthC in birthdays:
+                count=0
+                for birth1 in birthdays:
+                    if birthC == birth1:
+                        #print(birthC)
+                        count = count + 1
+                        if count > 5:
+                            error_descrip = "Multiple births"
+                            error_location = [individual.uid]
+                            print("\nError       User Story                            Description                         "                            "                             Location")
+                            print(('-' * 150))
+                            report_error('ERROR', error_type,error_descrip, error_location)
+                            return_flag = False            
 
     return return_flag
-
-
-#------------------------------------ US 15 END ------------------------------------------
-    
+#------------------------------------ US 14 END ------------------------------------------   
 #------------------------------------ US 15 START [DEEP]----------------------------------
 def US15_Fewer_than_15_siblings(families):
-    return_flag = True
-    error_type = "US15"
+   return_flag = True
+   error_type = "US15"
+   for family in families:
+       child = family.children
+       Number_of_children = len(child)
+       if Number_of_children > 15:
+           error_descrip = "More than 15 siblings"
+           error_location = [family.uid]
+           print("\nError       User Story                            Description                         "
+                 "                             Location")
+           print(('-' * 150))
+           report_error('ERROR', error_type, error_descrip, error_location)
+           return_flag = False
 
-    for family in families:
-        child = family.children
-        Number_of_children=len(child)
-        if Number_of_children > 15:
-            error_descrip = "More than 15 siblings"
-            error_location = [family.uid]
-            print("\nError       User Story                            Description                         "
-                "                             Location")
-            print(('-' * 150))
-            StoryValidation.report_error('ERROR', error_type, error_descrip, error_location)
-            return_flag = False
-
-    return return_flag
-
+   return return_flag
 #------------------------------------ US 15 END -------------------------------------------
-    
-#------------------------------------ US 16 START [KRUTARTH]--------------------------------
-
+#------------------------------------ US 31 START [KRUTARTH]-------------------------------
+# US31 List all living people over 30 who have never been married in a GEDCOM file
+def US31_List_living_single(individuals):
+    return_flag = True
+    #error_type = "US31"
+    for individual in individuals:   
+        birthDate = individual.birthday
+        x = datetime.now()
+        if birthDate != 'NA':
+            
+            a = int(x.strftime("%Y")) - int(birthDate.strftime("%Y"))
+            arg1 = int(birthDate.strftime("%m"))
+            if (arg1 > int(x.strftime("%m"))) and int(birthDate.strftime("%d")) > int(x.strftime("%d")):
+                age = a
+            else:
+                age = a-1
+            spouse = individual.fams
+            name = individual.name
+            people = []
+            if age > 30:
+               #if I put any condition in spouse(if conition) then it is showing that errors found
+                if spouse:
+                    return_flag = True
+                else:
+                    people.append(name[0])
+                    return_flag = False
+    print(people[0])
+    return return_flag
+#------------------------------------ US 31 END [KRUTARTH]-------------------------------
 
 ##############################       IMPLEMENTING  USER STORIES  END      ########################################
 
 ##############################       REPORTING ERRORS  START      #########################################
+
 error_locations = []
 
 def report_error(rtype, error_type, description, locations):
