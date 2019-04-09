@@ -594,7 +594,40 @@ def US20_aunts_and_uncles(individuals,families):
     return return_flag
 #------------------------------------ US 20 END ------------------------------------------- 
 
+#------------------------------------ US 23 START [DHAVAL]----------------------------------
+def US23_Unique_name_birth_date(individuals,families):
+   return_flag = True
+   error_type = "US23"
+   for individual in individuals:
+       birthDate=individual.birthday
+       name=individual.name
+       for indi in individuals:
+           if individual.uid!=indi.uid:
+               if indi.name==name and indi.birthday==birthDate:
+                   error_descrip = "Name and birth date same for different individuals"
+                   error_location = [individual.uid,indi.uid]
+                   report_error('ERROR', error_type, error_descrip, error_location)
+                   return_flag = False
 
+   return return_flag
+#------------------------------------ US 23 END -------------------------------------------
+
+#------------------------------------ US 24 START [DHAVAL]----------------------------------
+def US24_Unique_families_by_spouses(families):
+   return_flag = True
+   error_type = "US24"
+   for family in families:
+       for fam in families:
+           if family.uid!=fam.uid:
+               if family.married!='NA' and fam.married!='NA':
+                   if family.husbandName==fam.husbandName and family.wifeName==fam.wifeName and family.married==fam.married:
+                       error_descrip = "Spouse's names and marriage dates same for different families"
+                       error_location = [family.uid,fam.uid]
+                       report_error('ERROR', error_type, error_descrip, error_location)
+                       return_flag = False
+
+   return return_flag
+#------------------------------------ US 24 END -------------------------------------------
 
 
 ##############################       IMPLEMENTING  USER STORIES  END      ########################################

@@ -2,13 +2,13 @@
 1 SOUR Family Echo
 2 WWW http://www.familyecho.com/
 1 FILE Family 5
-1 DATE 8 APR 2019
+1 DATE 9 APR 2019
 1 DEST ANSTFILE
 1 GEDC
 2 VERS 5.5.1
 2 FORM LINEAGE-LINKED
 1 SUBM @I1@
-2 NAME Gopi Miyani
+2 NAME Dhaval Dongre
 1 SUBN
 1 CHAR UTF-8
 0 @I1@ INDI
@@ -266,99 +266,6 @@
 1 FAMS @F11@
 1 FAMC @F2@
 0 @I27@ INDI
-1 NAME Ramta /Trivedi/
-2 GIVN Ramta
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX F
-1 FAMC @F2@
-0 @I28@ INDI
-1 NAME Gamta /Trivedi/
-2 GIVN Gamta
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX F
-1 FAMS @F12@
-1 FAMC @F2@
-0 @I29@ INDI
-1 NAME Bhanta /Trivedi/
-2 GIVN Bhanta
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX F
-1 FAMC @F2@
-0 @I30@ INDI
-1 NAME Ramta /Trivedi/
-2 GIVN Ramta
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX F
-1 BIRT
-2 DATE 1 FEB 1990
-1 FAMC @F2@
-0 @I31@ INDI
-1 NAME Chanata /Trivedi/
-2 GIVN Chanata
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX M
-1 FAMC @F2@
-0 @I32@ INDI
-1 NAME Ganata /Trivedi/
-2 GIVN Ganata
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX M
-1 FAMC @F2@
-0 @I33@ INDI
-1 NAME Yo1 /Trivedi/
-2 GIVN Yo1
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX F
-1 BIRT
-2 DATE 2 JAN 1980
-1 FAMS @F8@
-0 @I34@ INDI
-1 NAME Jaayy /Trivedi/
-2 GIVN Jaayy
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX M
-1 BIRT
-2 DATE 1 FEB 1992
-1 FAMS @F12@
-1 FAMC @F1@
-0 @I35@ INDI
-1 NAME Honey /Trivedi/
-2 GIVN Honey
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX M
-1 BIRT
-2 DATE 2 JAN 2000
-1 FAMS @F10@
-1 FAMS @F13@
-1 FAMS @F14@
-0 @I36@ INDI
-1 NAME Hanita /Trivedi/
-2 GIVN Hanita
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX F
-1 BIRT
-2 DATE 5 JAN 2000
-1 FAMS @F14@
-0 @I37@ INDI
-1 NAME Unmarried /Trivedi/
-2 GIVN Unmarried
-2 SURN Trivedi
-2 _MARNM Trivedi
-1 SEX M
-1 BIRT
-2 DATE 1 JAN 1982
-1 FAMC @F3@
-0 @I38@ INDI
 1 NAME Ramesh /Trivedi/
 2 GIVN Ramesh
 2 SURN Trivedi
@@ -369,6 +276,96 @@
 1 DEAT Y
 2 DATE 3 JAN 2010
 1 FAMS @F11@
+0 @I28@ INDI
+1 NAME Ramta /Trivedi/
+2 GIVN Ramta
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 FAMC @F2@
+0 @I29@ INDI
+1 NAME Gamta /Trivedi/
+2 GIVN Gamta
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 FAMC @F2@
+0 @I30@ INDI
+1 NAME Bhanta /Trivedi/
+2 GIVN Bhanta
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 FAMC @F2@
+0 @I31@ INDI
+1 NAME Ramta /Trivedi/
+2 GIVN Ramta
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 BIRT
+2 DATE 1 FEB 1990
+1 FAMC @F2@
+0 @I32@ INDI
+1 NAME Chanata /Trivedi/
+2 GIVN Chanata
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX M
+1 FAMC @F2@
+0 @I33@ INDI
+1 NAME Ganata /Trivedi/
+2 GIVN Ganata
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX M
+1 FAMC @F2@
+0 @I34@ INDI
+1 NAME Yo1 /Trivedi/
+2 GIVN Yo1
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 BIRT
+2 DATE 2 JAN 1980
+1 FAMS @F8@
+0 @I35@ INDI
+1 NAME Jaayy /Trivedi/
+2 GIVN Jaayy
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX M
+1 BIRT
+2 DATE 1 FEB 1992
+1 FAMC @F1@
+0 @I36@ INDI
+1 NAME Honey /Trivedi/
+2 GIVN Honey
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX M
+1 BIRT
+2 DATE 2 JAN 2000
+1 FAMS @F10@
+1 FAMS @F12@
+0 @I37@ INDI
+1 NAME Hanita /Trivedi/
+2 GIVN Hanita
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 BIRT
+2 DATE 5 JAN 2000
+1 FAMS @F12@
+0 @I38@ INDI
+1 NAME Unmarried /Trivedi/
+2 GIVN Unmarried
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 1982
+1 FAMC @F3@
 0 @I39@ INDI
 1 NAME Ektara /Trivedi/
 2 GIVN Ektara
@@ -377,12 +374,30 @@
 1 SEX F
 1 BIRT
 2 DATE 1 JAN 2060
-1 FAMS @F13@
 1 FAMC @F11@
+0 @I40@ INDI
+1 NAME Krutarth /Trivedi/
+2 GIVN Krutarth
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX M
+1 BIRT
+2 DATE 4 MAR 1780
+1 FAMS @F13@
+1 FAMC @F3@
+0 @I41@ INDI
+1 NAME Deepika /Trivedi/
+2 GIVN Deepika
+2 SURN Trivedi
+2 _MARNM Trivedi
+1 SEX F
+1 BIRT
+2 DATE 5 NOV 1990
+1 FAMS @F13@
 0 @F1@ FAM
 1 HUSB @I1@
 1 WIFE @I2@
-1 CHIL @I34@
+1 CHIL @I35@
 1 MARR
 2 DATE 5 NOV 2008
 1 _CURRENT Y
@@ -401,12 +416,12 @@
 1 CHIL @I24@
 1 CHIL @I25@
 1 CHIL @I26@
-1 CHIL @I27@
 1 CHIL @I28@
 1 CHIL @I29@
 1 CHIL @I30@
 1 CHIL @I31@
 1 CHIL @I32@
+1 CHIL @I33@
 1 MARR
 2 DATE 7 JUL 1998
 2 PLAC Mumbai
@@ -418,7 +433,8 @@
 1 WIFE @I5@
 1 CHIL @I1@
 1 CHIL @I6@
-1 CHIL @I37@
+1 CHIL @I38@
+1 CHIL @I40@
 1 MARR
 2 DATE 20 JUL 1979
 2 PLAC Mumbai
@@ -457,7 +473,7 @@
 1 _CURRENT Y
 0 @F8@ FAM
 1 HUSB @I8@
-1 WIFE @I33@
+1 WIFE @I34@
 1 MARR
 2 DATE 1 FEB 2008
 1 EVEN
@@ -473,32 +489,28 @@
 2 DATE 11 MAY 2020
 1 _CURRENT N
 0 @F10@ FAM
-1 HUSB @I35@
+1 HUSB @I36@
 1 WIFE @I22@
 1 MARR
 2 DATE 2 FEB 2004
 1 EVEN
 2 TYPE Ending
 1 _CURRENT N
-0 @F13@ FAM
-1 HUSB @I35@
-1 WIFE @I39@
-1 _CURRENT Y
-0 @F14@ FAM
-1 HUSB @I35@
-1 WIFE @I36@
+0 @F12@ FAM
+1 HUSB @I36@
+1 WIFE @I37@
 1 MARR
 2 DATE 1 JAN 2003
-1 EVEN
-2 TYPE Ending
-1 _CURRENT N
+1 _CURRENT Y
 0 @F11@ FAM
 1 HUSB @I26@
-1 WIFE @I38@
+1 WIFE @I27@
 1 CHIL @I39@
 1 _CURRENT Y
-0 @F12@ FAM
-1 HUSB @I34@
-1 WIFE @I28@
+0 @F13@ FAM
+1 HUSB @I40@
+1 WIFE @I41@
+1 MARR
+2 DATE 5 NOV 2008
 1 _CURRENT Y
 0 TRLR

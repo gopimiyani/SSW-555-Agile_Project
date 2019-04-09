@@ -163,6 +163,20 @@ class test_UserStories(unittest.TestCase):
         print('TESTING US_19...')
         individuals = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US20_aunts_and_uncles(individuals,families),False)
+
+# ------------------------------- TESTING US_23 -------------------------------------
+    def test_US23(self):
+       
+        print('TESTING US_23...')
+        individuals = GedcomParser.gedcomParser()
+        self.assertEqual(UserStories.US23_Unique_name_birth_date(individuals,families),False)
+        
+# ------------------------------- TESTING US_24 -------------------------------------
+    def test_US24(self):
+       
+        print('TESTING US_24...')
+        families = GedcomParser.gedcomParser()
+        self.assertEqual(UserStories.US24_Unique_families_by_spouses(families),False)
         
         
 
