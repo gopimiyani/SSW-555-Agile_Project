@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Mar  5 17:47:44 2019
-
-@author: gopi
-"""
 
 ##############################       UNIT TEST  START      #########################################
 
@@ -149,7 +144,23 @@ class test_UserStories(unittest.TestCase):
         #self.assertEqual(UserStories.US31_List_living_single(individuals), True)
         individuals = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US31_List_living_single(individuals),False)     
-        
+
+# ------------------------------- TESTING US_16 -------------------------------------
+    def test_US16(self):
+       
+        print('TESTING US_16...')
+        individuals = GedcomParser.gedcomParser()
+        self.assertEqual(UserStories.US16_Male_last_names_should_be_same(individuals,families),False)
+
+
+# ------------------------------- TESTING US_18 -------------------------------------
+    def test_US18(self):
+       
+        print('TESTING US_18...')
+        individuals = GedcomParser.gedcomParser()
+        self.assertEqual(UserStories.US18_no_sibling_should_marry_eachother(individuals, families),False)
+
+
 # ------------------------------- TESTING US_19 -------------------------------------
     def test_US19(self):
        
@@ -163,6 +174,21 @@ class test_UserStories(unittest.TestCase):
         print('TESTING US_19...')
         individuals = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US20_aunts_and_uncles(individuals,families),False)
+
+# ------------------------------- TESTING US_21 -------------------------------------
+    def test_US21(self):
+       
+        print('TESTING US_21...')
+        individuals = GedcomParser.gedcomParser()
+        self.assertEqual(UserStories.US21_Correct_gender_for_role(individuals, families),False)
+
+# ------------------------------- TESTING US_20 -------------------------------------
+    def test_US22(self):
+       
+        print('TESTING US_22...')
+        individuals = GedcomParser.gedcomParser()
+        self.assertEqual(UserStories.US22_Unique_IDs(individuals, families),False)
+
 
 # ------------------------------- TESTING US_23 -------------------------------------
     def test_US23(self):
