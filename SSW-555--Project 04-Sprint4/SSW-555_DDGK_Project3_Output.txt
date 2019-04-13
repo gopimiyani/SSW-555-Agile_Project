@@ -1,0 +1,162 @@
+
+Individuals
++-------+-----------------------------+--------+------------+------------+-------+-----------+--------------------+
+|   ID  |             Name            | Gender |  Birthday  |   Alive    | Death |   Child   |       Spouse       |
++-------+-----------------------------+--------+------------+------------+-------+-----------+--------------------+
+|  @I1@ |  ['Krutarth', '/Trivedi/']  |   M    | 1780-03-04 |     NA     |  True |  ['@F3@'] |  ['@F1@', '@F2@']  |
+|  @I2@ |   ['Deepika', '/Trivedi/']  |   F    | 1980-07-06 |     NA     |  True |     []    |      ['@F1@']      |
+|  @I3@ |    ['Manva', '/Trivedi/']   |   F    | 1979-03-04 | 2010-11-10 | False |     []    |      ['@F2@']      |
+|  @I4@ | ['Dharmendra', '/Trivedi/'] |   M    | 1957-11-29 |     NA     |  True |  ['@F4@'] |      ['@F3@']      |
+|  @I5@ |  ['Falguni', '/Pancholi/']  |   F    | 1960-03-05 |     NA     |  True |     []    |      ['@F3@']      |
+|  @I6@ |    ['Kajol', '/Trivedi/']   |   F    | 1980-10-17 |     NA     |  True |  ['@F3@'] |  ['@F5@', '@F6@']  |
+|  @I7@ |    ['Prithvi', '/Modi/']    |   M    | 1974-07-01 |     NA     |  True |     []    |      ['@F5@']      |
+|  @I8@ |   ['Kirtan', '/Trivedi/']   |   M    | 2001-05-11 |     NA     |  True |  ['@F2@'] |  ['@F7@', '@F8@']  |
+|  @I9@ |     ['Yo2', '/Trivedi/']    |   F    | 1980-01-04 |     NA     |  True |     []    |      ['@F7@']      |
+| @I10@ |    ['Arjun', '/Trivedi/']   |   M    | 1990-02-01 |     NA     |  True |  ['@F2@'] |      ['@F9@']      |
+| @I11@ |    ['Savitri', '/Joshi/']   |   F    | 2000-01-08 | 2015-05-04 | False |     []    |      ['@F9@']      |
+| @I12@ |      ['Navya', '/Oza/']     |   F    | 2056-10-28 | 2049-11-30 | False |     []    |      ['@F4@']      |
+| @I13@ |   ['Piyush', '/Trivedi/']   |   M    | 1942-07-08 | 1996-10-11 | False |     []    |      ['@F4@']      |
+| @I14@ |     ['Pratik', '/Shah/']    |   M    | 1980-05-06 | 2009-08-18 | False |     []    |      ['@F6@']      |
+| @I15@ |    ['Kartavya', '/Modi/']   |   M    | 2003-04-13 |     NA     |  True |  ['@F6@'] |         []         |
+| @I16@ |    ['Kavya', '/Trivedi/']   |   F    | 2017-10-09 |     NA     |  True |  ['@F5@'] |         []         |
+| @I17@ |    ['Maya', '/Trivedi/']    |   F    | 2001-05-11 |     NA     |  True |  ['@F2@'] |         []         |
+| @I18@ |     ['Ram', '/Trivedi/']    |   M    | 2011-05-11 |     NA     |  True |  ['@F2@'] |         []         |
+| @I19@ |    ['Sita', '/Trivedi/']    |   F    | 2001-05-11 |     NA     |  True |  ['@F2@'] |         []         |
+| @I20@ |   ['Savita', '/Trivedi/']   |   F    | 2001-05-11 |     NA     |  True |  ['@F2@'] |         []         |
+| @I21@ |   ['Janita', '/Trivedi/']   |   F    | 1990-02-01 |     NA     |  True |  ['@F2@'] |         []         |
+| @I22@ |   ['Bhanita', '/Trivedi/']  |   F    | 2000-01-01 |     NA     |  True |  ['@F2@'] |     ['@F10@']      |
+| @I23@ |   ['Ranita', '/Trivedi/']   |   F    | 1990-02-02 |     NA     |  True |  ['@F2@'] |         []         |
+| @I24@ |   ['Lalita', '/Trivedi/']   |   F    | 1990-02-01 |     NA     |  True |  ['@F2@'] |         []         |
+| @I25@ |   ['Momata', '/Trivedi/']   |   M    | 1990-02-01 |     NA     |  True |  ['@F2@'] |         []         |
+| @I26@ |    ['Ekta', '/Trivedi/']    |   M    | 1990-03-01 |     NA     |  True |  ['@F2@'] |     ['@F11@']      |
+| @I27@ |   ['Ramesh', '/Trivedi/']   |   M    | 1920-06-01 | 2010-01-03 | False |     []    |     ['@F11@']      |
+| @I28@ |    ['Ramta', '/Trivedi/']   |   F    |     NA     |     NA     |  True |  ['@F2@'] |         []         |
+| @I29@ |    ['Gamta', '/Trivedi/']   |   F    |     NA     |     NA     |  True |  ['@F2@'] |         []         |
+| @I30@ |   ['Bhanta', '/Trivedi/']   |   F    |     NA     |     NA     |  True |  ['@F2@'] |         []         |
+| @I31@ |    ['Ramta', '/Trivedi/']   |   F    | 1990-02-01 |     NA     |  True |  ['@F2@'] |         []         |
+| @I32@ |   ['Chanata', '/Trivedi/']  |   M    |     NA     |     NA     |  True |  ['@F2@'] |         []         |
+| @I33@ |   ['Ganata', '/Trivedi/']   |   M    |     NA     |     NA     |  True |  ['@F2@'] |         []         |
+| @I34@ |     ['Yo1', '/Trivedi/']    |   F    | 1980-01-02 |     NA     |  True |     []    |      ['@F8@']      |
+| @I35@ |    ['Jaayy', '/Trivedi/']   |   M    | 1992-02-01 |     NA     |  True |  ['@F1@'] |         []         |
+| @I36@ |    ['Honey', '/Trivedi/']   |   M    | 2000-01-02 |     NA     |  True |     []    | ['@F10@', '@F12@'] |
+| @I37@ |   ['Hanita', '/Trivedi/']   |   F    | 2000-01-05 |     NA     |  True |     []    |     ['@F12@']      |
+| @I38@ |  ['Unmarried', '/Trivedi/'] |   M    | 1982-01-01 |     NA     |  True |  ['@F3@'] |         []         |
+| @I39@ |   ['Ektara', '/Trivedi/']   |   F    | 2060-01-01 |     NA     |  True | ['@F11@'] |         []         |
+| @I40@ |  ['Krutarth', '/Trivedi/']  |   M    | 1780-03-04 |     NA     |  True |  ['@F3@'] |     ['@F13@']      |
+| @I41@ |   ['Deepika', '/Trivedi/']  |   F    | 1990-11-05 |     NA     |  True |     []    |     ['@F13@']      |
++-------+-----------------------------+--------+------------+------------+-------+-----------+--------------------+
+
+Families
++-------+------------+------------+------------+-----------------------------+---------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|   ID  |  Married   |  Divorced  | Husband ID |         Husband Name        | Wife ID |         Wife Name         |                                                                              Children                                                                             |
++-------+------------+------------+------------+-----------------------------+---------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  @F1@ | 2008-11-05 |     NA     |    @I1@    |  ['Krutarth', '/Trivedi/']  |   @I2@  |  ['Deepika', '/Trivedi/'] |                                                                             ['@I35@']                                                                             |
+|  @F2@ | 1998-07-07 |     NA     |    @I1@    |  ['Krutarth', '/Trivedi/']  |   @I3@  |   ['Manva', '/Trivedi/']  | ['@I8@', '@I10@', '@I17@', '@I18@', '@I19@', '@I20@', '@I21@', '@I22@', '@I23@', '@I24@', '@I25@', '@I26@', '@I28@', '@I29@', '@I30@', '@I31@', '@I32@', '@I33@'] |
+|  @F3@ | 1979-07-20 |     NA     |    @I4@    | ['Dharmendra', '/Trivedi/'] |   @I5@  | ['Falguni', '/Pancholi/'] |                                                                 ['@I1@', '@I6@', '@I38@', '@I40@']                                                                |
+|  @F4@ | 2055-09-06 |     NA     |   @I13@    |   ['Piyush', '/Trivedi/']   |  @I12@  |     ['Navya', '/Oza/']    |                                                                              ['@I4@']                                                                             |
+|  @F5@ | 2005-10-10 |     NA     |    @I7@    |    ['Prithvi', '/Modi/']    |   @I6@  |   ['Kajol', '/Trivedi/']  |                                                                             ['@I16@']                                                                             |
+|  @F6@ | 1999-08-10 |     NA     |   @I14@    |     ['Pratik', '/Shah/']    |   @I6@  |   ['Kajol', '/Trivedi/']  |                                                                             ['@I15@']                                                                             |
+|  @F7@ | 2008-01-01 |     NA     |    @I8@    |   ['Kirtan', '/Trivedi/']   |   @I9@  |    ['Yo2', '/Trivedi/']   |                                                                                 []                                                                                |
+|  @F8@ | 2008-02-01 |     NA     |    @I8@    |   ['Kirtan', '/Trivedi/']   |  @I34@  |    ['Yo1', '/Trivedi/']   |                                                                                 []                                                                                |
+|  @F9@ | 2030-02-14 | 2020-05-11 |   @I10@    |    ['Arjun', '/Trivedi/']   |  @I11@  |   ['Savitri', '/Joshi/']  |                                                                                 []                                                                                |
+| @F10@ | 2004-02-02 |     NA     |   @I36@    |    ['Honey', '/Trivedi/']   |  @I22@  |  ['Bhanita', '/Trivedi/'] |                                                                                 []                                                                                |
+| @F12@ | 2003-01-01 |     NA     |   @I36@    |    ['Honey', '/Trivedi/']   |  @I37@  |  ['Hanita', '/Trivedi/']  |                                                                                 []                                                                                |
+| @F11@ |     NA     |     NA     |   @I26@    |    ['Ekta', '/Trivedi/']    |  @I27@  |  ['Ramesh', '/Trivedi/']  |                                                                             ['@I39@']                                                                             |
+| @F13@ | 2008-11-05 |     NA     |   @I40@    |  ['Krutarth', '/Trivedi/']  |  @I41@  |  ['Deepika', '/Trivedi/'] |                                                                                 []                                                                                |
++-------+------------+------------+------------+-----------------------------+---------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Validating User Stories..
+
+========================================================= Reporting Errors ================================================================
+
+
+Error     User Story                            Description                                                                 Location
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ERROR      US01             Marriage date (2055-09-06) should not occur after today (2019-04-09)                               @F4@,@I13@,@I12@    
+ERROR      US01             Marriage date (2030-02-14) should not occur after today (2019-04-09)                               @F9@,@I10@,@I11@    
+ERROR      US01             Divorce date (2020-05-11) should not occur after today (2019-04-09)                                @F9@,@I10@,@I11@    
+ERROR      US01             Birthday date (2056-10-28) should not occur after today (2019-04-09)                               @I12@               
+ERROR      US01             Death date (2049-11-30) should not occur after today (2019-04-09)                                  @I12@               
+ERROR      US01             Birthday date (2060-01-01) should not occur after today (2019-04-09)                               @I39@               
+ERROR      US02             Birth of wife (2056-10-28) occurs before her marriage (2055-09-06)                                 @I12@               
+ERROR      US03             Death (2049-11-30) occurs before Birthday (2056-10-28)                                             @I12@               
+ERROR      US04             Divorce (2020-05-11) occurs before marriage (2030-02-14)                                           @F9@,@I10@,@I11@    
+ERROR      US05             Death of wife (2049-11-30) occurs before her marriage (2055-09-06)                                 @I12@               
+ERROR      US05             Death of Husband (1996-10-11) occurs before his marriage (2055-09-06)                              @I13@               
+ERROR      US05             Death of wife (2015-05-04) occurs before her marriage (2030-02-14)                                 @I11@               
+ERROR      US06             Divorce after death                                                                                @I11@               
+ERROR      US07             Age is more than 150                                                                               @I1@                
+ERROR      US07             Age is more than 150                                                                               @I40@               
+ERROR      US08             Birth of child (1992-02-01)['Jaayy', '/Trivedi/']cannot occur before marriage (2008-11-05)         @I35@,@F1@          
+ERROR      US08             Birth of child (1990-02-01)['Arjun', '/Trivedi/']cannot occur before marriage (1998-07-07)         @I10@,@F2@          
+ERROR      US08             Birth of child (1990-02-01)['Janita', '/Trivedi/']cannot occur before marriage (1998-07-07)        @I21@,@F2@          
+ERROR      US08             Birth of child (1990-02-02)['Ranita', '/Trivedi/']cannot occur before marriage (1998-07-07)        @I23@,@F2@          
+ERROR      US08             Birth of child (1990-02-01)['Lalita', '/Trivedi/']cannot occur before marriage (1998-07-07)        @I24@,@F2@          
+ERROR      US08             Birth of child (1990-02-01)['Momata', '/Trivedi/']cannot occur before marriage (1998-07-07)        @I25@,@F2@          
+ERROR      US08             Birth of child (1990-03-01)['Ekta', '/Trivedi/']cannot occur before marriage (1998-07-07)          @I26@,@F2@          
+ERROR      US08             Birth of child (1990-02-01)['Ramta', '/Trivedi/']cannot occur before marriage (1998-07-07)         @I31@,@F2@          
+ERROR      US08             Birth of child (1780-03-04)['Krutarth', '/Trivedi/']cannot occur before marriage (1979-07-20)      @I1@,@F3@           
+ERROR      US08             Birth of child (1780-03-04)['Krutarth', '/Trivedi/']cannot occur before marriage (1979-07-20)      @I40@,@F3@          
+ERROR      US08             Birth of child (1957-11-29)['Dharmendra', '/Trivedi/']cannot occur before marriage (2055-09-06)    @I4@,@F4@           
+ERROR      US10             Age during marriage less than 14 for wife! birth2056-10-28 marriage:2055-09-06                     @I12@               
+ERROR      US10             Age during marriage less than 14 for husband! birth:2001-05-11 marriage:2008-01-01                 @I8@                
+ERROR      US10             Age during marriage less than 14 for husband! birth:2001-05-11 marriage:2008-01-01                 @I8@                
+ERROR      US10             Age during marriage less than 14 for husband! birth:2000-01-02 marriage:2004-02-02                 @I36@               
+ERROR      US10             Age during marriage less than 14 for wife! birth2000-01-01 marriage:2004-02-02                     @I22@               
+ERROR      US10             Age during marriage less than 14 for husband! birth:2000-01-02 marriage:2004-02-02                 @I36@               
+ERROR      US10             Age during marriage less than 14 for wife! birth2000-01-05 marriage:2003-01-01                     @I37@               
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I35@, 27)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I8@, 18)
+                      @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I10@, 29)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I17@, 18)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I18@, 8)
+                      @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I19@, 18)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I20@, 18)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I21@, 29)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I22@, 19)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I23@, 29)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I24@, 29)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I25@, 29)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I26@, 29)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I1@, 239) is >80 years than his children(Id,Age: @I31@, 29)
+                     @I1@                
+ERROR      US12             Husband (Id,Age: @I4@, 62) is >80 years than his children(Id,Age: @I1@, 239)
+                      @I4@                
+ERROR      US12             Wife (Id,Age: @I5@, 59) is >60 years than her children (Id,Age: @I1@, 239)
+                        @I5@                
+ERROR      US12             Husband (Id,Age: @I4@, 62) is >80 years than his children(Id,Age: @I40@, 239)
+                     @I4@                
+ERROR      US12             Wife (Id,Age: @I5@, 59) is >60 years than her children (Id,Age: @I40@, 239)
+                       @I5@                
+ERROR      US12             Wife (Id,Age: @I12@, 37) is >60 years than her children (Id,Age: @I4@, 62)
+                        @I12@               
+ERROR      US12             Wife (Id,Age: @I27@, 99) is >60 years than her children (Id,Age: @I39@, 41)
+                       @I27@               
+ERROR      US13             Child (ID: @I10@, B'day: 1990-02-01) violates sibling spacing with (ID: @I26@, B'day: 1990-03-0    @I10@               
+ERROR      US15             More than 15 siblings                                                                              @F2@                
+ERROR      US20             ['Kirtan', '/Trivedi/'](ID:@I8@)married to his niece or nephew ['Yo2', '/Trivedi/'](ID:@I9@)
+      @I8@                
+ERROR      US23             Name and birth date same for different individuals                                                 @I1@,@I40@          
+ERROR      US23             Name and birth date same for different individuals                                                 @I40@,@I1@          
+ERROR      US24             Spouse's names and marriage dates same for different families                                      @F1@,@F13@          
+ERROR      US24             Spouse's names and marriage dates same for different families                                      @F13@,@F1@          
+
+======================================================= Errors in User Stories ============================================================
+
+
+Errors found in below User Stories:
+
+['US01', 'US02', 'US03', 'US04', 'US05', 'US06', 'US07', 'US08', 'US10', 'US12', 'US13', 'US15', 'US20', 'US23', 'US24']
+[H[2J
