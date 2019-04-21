@@ -21,45 +21,45 @@ from datetime import date,timedelta
 """
     # Sprint 1
     Story ID	Story-Name	                        Owner
-        US01	Dates before current date	        Dhaval
-        US02	Birth before marriage	            Krutarth
-        US03	Birth before death	                Krutarth
-        US04	Marriage before divorce	            Gopi
-        US05	Marriage before death	            Gopi
-        US06	Divorce before death	            Deep
-        US07	Less then 150 years old	            Deep
-        US08	Birth before marriage of parents	Dhaval
+        US01	Dates before current date	               Dhaval
+        US02	Birth before marriage	               Krutarth
+        US03	Birth before death	               Krutarth
+        US04	Marriage before divorce	               Gopi
+        US05	Marriage before death	               Gopi
+        US06	Divorce before death	               Deep
+        US07	Less then 150 years old	               Deep
+        US08	Birth before marriage of parents	      Dhaval
 
 
         #Sprint 2
-        US09	Birth before death of parents	Krutarth
-        US10	Marriage after 14	            Dhaval
-        US11	No bigamy	                    Dhaval
-        US12	Parents not too old	            Gopi
-        US13	Siblings spacing	            Gopi
-        US14	Multiple births <= 5	        Deep
-        US15	Fewer than 15 siblings	        Deep
-        US31	List living single	            Krutarth
+        US09	Birth before death of parents	     Krutarth
+        US10	Marriage after 14	                       Dhaval
+        US11	No bigamy	                       Dhaval
+        US12	Parents not too old	              Gopi
+        US13	Siblings spacing	                       Gopi
+        US14	Multiple births <= 5	              Deep
+        US15	Fewer than 15 siblings	              Deep
+        US31	List living single	              Krutarth
 
         #Sprint 3
-        US16	Male last names	                Krutarth
-        US18	Siblings should not marry	    Krutarth
-        US19	First cousins should not marry	Gopi
-        US20	Aunts and uncles	            Gopi
-        US21	Correct gender for role	        Deep
-        US22	Unique IDs	                    Deep
-        US23	Unique name and birth date	    Dhaval
-        US24	Unique families by spouses	    Dhaval
+        US16	Male last names	                       Krutarth
+        US18	Siblings should not marry                Krutarth
+        US19	First cousins should not marry	     Gopi
+        US20	Aunts and uncles	                       Gopi
+        US21	Correct gender for role	              Deep
+        US22	Unique IDs	                       Deep
+        US23	Unique name and birth date	              Dhaval
+        US24	Unique families by spouses	              Dhaval
 
         # Sprint 4
-        US24	Unique families by spouses	    Dhaval
-        US36	List recent deaths	            Dhaval
-        US25	Unique first names in families	Gopi
-        US35	List recent births	            Gopi
-        US38	List upcoming birthdays	        Krutarth
+        US24	Unique families by spouses	             Dhaval
+        US36	List recent deaths	             Dhaval
+        US25	Unique first names in families	    Gopi
+        US35	List recent births	             Gopi
+        US38	List upcoming birthdays	             Krutarth
         US39	List upcoming anniversaries	    Krutarth
-        US30	List living married	            Deep
-        US33	List orphans	                Deep
+        US30	List living married	             Deep
+        US33	List orphans	                      Deep
 
 """
 ##############################       IMPLEMENTING  USER STORIES  START      #######################################
