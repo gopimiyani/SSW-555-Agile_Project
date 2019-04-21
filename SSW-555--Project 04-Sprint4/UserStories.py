@@ -18,10 +18,50 @@ from datetime import date,timedelta
 
 #print(dates_within(datetime.strptime('2018-05-04',"%Y-%m-%d"), datetime.strptime('2011-05-04',"%Y-%m-%d"), 0, 15, 'years'))    
 ##############################       FUNCTIONS  START      #######################################
+"""
+    # Sprint 1
+    Story ID	Story-Name	                        Owner
+        US01	Dates before current date	        Dhaval
+        US02	Birth before marriage	            Krutarth
+        US03	Birth before death	                Krutarth
+        US04	Marriage before divorce	            Gopi
+        US05	Marriage before death	            Gopi
+        US06	Divorce before death	            Deep
+        US07	Less then 150 years old	            Deep
+        US08	Birth before marriage of parents	Dhaval
 
 
+        #Sprint 2
+        US09	Birth before death of parents	Krutarth
+        US10	Marriage after 14	            Dhaval
+        US11	No bigamy	                    Dhaval
+        US12	Parents not too old	            Gopi
+        US13	Siblings spacing	            Gopi
+        US14	Multiple births <= 5	        Deep
+        US15	Fewer than 15 siblings	        Deep
+        US31	List living single	            Krutarth
 
+        #Sprint 3
+        US16	Male last names	                Krutarth
+        US18	Siblings should not marry	    Krutarth
+        US19	First cousins should not marry	Gopi
+        US20	Aunts and uncles	            Gopi
+        US21	Correct gender for role	        Deep
+        US22	Unique IDs	                    Deep
+        US23	Unique name and birth date	    Dhaval
+        US24	Unique families by spouses	    Dhaval
 
+        # Sprint 4
+        US24	Unique families by spouses	    Dhaval
+        US36	List recent deaths	            Dhaval
+        US25	Unique first names in families	Gopi
+        US35	List recent births	            Gopi
+        US38	List upcoming birthdays	        Krutarth
+        US39	List upcoming anniversaries	    Krutarth
+        US30	List living married	            Deep
+        US33	List orphans	                Deep
+
+"""
 ##############################       IMPLEMENTING  USER STORIES  START      #######################################
 
 #------------------------------------ US 01 START [Dhaval]--------------------------------
@@ -68,16 +108,9 @@ def US01_dates_before_currentDate(individuals,families):
                     error_location = [individual.uid]
                     report_error('ERROR',error_type, error_descrip, error_location)
                     return_flag = False                
-
-    #print("test"+return_flag)
-
     return return_flag
-
 #------------------------------------ US 01 END ------------------------------------------
-
-
 #------------------------------------ US 02 START [Krutarth]------------------------------
-
 ## US02 All BIRTH DATES MUST BE BEFORE MARRIAGE 
 def US02_birth_before_marriage(individuals,families):
     return_flag = True
@@ -102,11 +135,8 @@ def US02_birth_before_marriage(individuals,families):
                             report_error('ERROR',error_type, error_descrip, error_location)
                             return_flag = False
     return return_flag
-
 #------------------------------------ US 02 END ------------------------------------------
-
 #------------------------------------ US 03 START [Krutarth]------------------------------
-
 ## US03 All BIRTH DATES MUST BE BEFORE DEATH DATE
 def US03_birth_before_death(individuals):
     return_flag = True
@@ -119,14 +149,9 @@ def US03_birth_before_death(individuals):
                 report_error('ERROR',error_type, error_descrip, error_location)
                 return_flag = False
     return return_flag
-
 #------------------------------------ US 03 END -----------------------------------------
-
-
 #------------------------------------ US 04 START [Gopi]---------------------------------
-
 ## US04 All MARRIAGE DATES MUST BE BEFORE DIVORCE DATE
-
 def US04_marriage_before_divorce(families):
     return_flag = True
     error_type = "US04"
@@ -140,15 +165,9 @@ def US04_marriage_before_divorce(families):
                              error_descrip, error_location)
                 return_flag = False
     return return_flag
-
-
 #------------------------------------ US 04 END ------------------------------------------
-
-
 #------------------------------------ US 05 START [Gopi]-----------------------------------------
-
 ## US05 All MARRIAGE DATES MUST BE BEFORE DEATH DATE
-
 def US05_marriage_before_death(individuals, families):
     return_flag = True
     error_type = "US05"
@@ -178,12 +197,8 @@ def US05_marriage_before_death(individuals, families):
                             report_error('ERROR', error_type,error_descrip, error_location)
                             return_flag = False
     return return_flag
-
 #------------------------------------ US 05 END -------------------------------------------
-
-
 #------------------------------------ US 06 START [Deep]-----------------------------------------
-
 def US06_Divorce_before_death(individual, families):
     return_flag = True
     error_type = "US06"
@@ -231,16 +246,11 @@ def US06_Divorce_before_death(individual, families):
                         else:
                             error_descrip = "Divorce after death"
                             error_location = [linei.uid]
-        
                             report_error('ERROR', error_type,error_descrip, error_location)
                             return_flag = False
     return return_flag
-
 #------------------------------------ US 06 END -------------------------------------------
-
-
 #------------------------------------ US 07 START [Deep]-----------------------------------------
-
 def US07(individuals):
     return_flag = True
     error_type = "US07"
@@ -264,8 +274,6 @@ def US07(individuals):
     return return_flag
 
 #------------------------------------ US 07 END -------------------------------------------
-
-
 #------------------------------------ US 08 START [Dhaval]---------------------------------
 def US08_childbirth_after_marriage(individuals,families):
     return_flag = True
@@ -280,16 +288,10 @@ def US08_childbirth_after_marriage(individuals,families):
                             error_location = [individual.uid,family.uid]
                             report_error('ERROR',error_type, error_descrip, error_location)
                             return_flag = False
-                
     return return_flag
-
-#------------------------------------ US 08 END -------------------------------------------
-    
-
-#------------------------------------ US 09 START [KRUTARTH]-------------------------------
-
+#------------------------------------ US 08 END ------------------------------------------
+#------------------------------------ US 09 START [KRUTARTH]------------------------------
 # US09 BIRTH BEFORE DEATH OF PARENTS
-
 def US09_birth_before_death_of_parents(individuals, families):
    return_flag = True
    error_type = "US09"
@@ -310,9 +312,7 @@ def US09_birth_before_death_of_parents(individuals, families):
                        child_birthday = individual.birthday
                if dad_death != 'NA' and mom_death != 'NA' and child_birthday != 'NA':
                    if child_birthday > dad_death or child_birthday > mom_death:
-                       error_descrip = "Death (" + str(individual.deathDate) + \
-                           ") occurs before Birthday (" + \
-                           str(individual.birthday)+")"
+                       error_descrip = "Death occurs before Birthday"
                        error_location = [individual.uid]
                        report_error('ERROR', error_type,
                                     error_descrip, error_location)
@@ -320,32 +320,25 @@ def US09_birth_before_death_of_parents(individuals, families):
 
                elif dad_death != 'NA' and mom_death == 'NA'and child_birthday != 'NA':
                    if child_birthday > dad_death:
-                       error_descrip = "Death (" + str(individual.deathDate) + \
-                           ") occurs before Birthday (" + \
-                           str(individual.birthday)+")"
+                       error_descrip = "Death occurs before Birthday"
                        error_location = [individual.uid]
                        report_error('ERROR', error_type,
                                     error_descrip, error_location)
                        return_flag = False
                elif dad_death == 'NA' and mom_death != 'NA'and child_birthday != 'NA':
                    if child_birthday > mom_death:
-                       error_descrip = "Death (" + str(individual.deathDate) + \
-                           ") occurs before Birthday (" + \
-                           str(individual.birthday)+")"
+                       error_descrip = "Death occurs before Birthday"
                        error_location = [individual.uid]
                        report_error('ERROR', error_type,
                                     error_descrip, error_location)
                        return_flag = False
 
    return return_flag
-
 #------------------------------------ US 09 END -------------------------------------------
-
 #------------------------------------ US 10 START [Dhaval]---------------------------------
 def US10_marriage_age_14(individuals,families):
     return_flag = True
     error_type = "US10"
-    
     for family in families:   
       if family.married != 'NA':
         for individual in individuals:
@@ -364,11 +357,8 @@ def US10_marriage_age_14(individuals,families):
                     error_location = [individual.uid]
                     report_error('ERROR',error_type, error_descrip, error_location)
                     return_flag = False
-
     return return_flag
-
 #------------------------------------ US 10 END -------------------------------------------
-
 #------------------------------------ US 11 START [Dhaval]---------------------------------
 #Marriage should not occur during marriage to another spouse
 def US11_no_bigamy(individuals,families):
@@ -458,7 +448,6 @@ def US13_siblings_spacing(individuals, families):
 def US14_Multiple_births(individuals, families):
     return_flag = True
     error_type = "US14"
-
     for family in families:
         birthdays = []
         children = family.children
@@ -480,7 +469,6 @@ def US14_Multiple_births(individuals, families):
                             error_location = [individual.uid]
                             report_error('ERROR', error_type,error_descrip, error_location)
                             return_flag = False            
-
     return return_flag
 #------------------------------------ US 14 END ------------------------------------------   
 #------------------------------------ US 15 START [DEEP]----------------------------------
@@ -501,43 +489,33 @@ def US15_Fewer_than_15_siblings(families):
 #------------------------------------ US 31 START [KRUTARTH]-------------------------------
 # US31 List all living people over 30 who have never been married in a GEDCOM file
 def US31_List_living_single(individuals):
-   return_flag = True
-   #error_type = "US31"
-   for individual in individuals:
-       #print(individual.name)
-       birthDate = individual.birthday
-       currentDate = datetime.now()
-       if birthDate!='NA':
-           lifeSpan = int(currentDate.strftime("%Y")) - int(birthDate.strftime("%Y"))
-           age = int(birthDate.strftime("%m"))
-           if (age > int(currentDate.strftime("%m"))) and int(birthDate.strftime("%d")) > int(currentDate.strftime("%d")):
-               age = lifeSpan
-           else:
-               age = lifeSpan-1
-
-           spouse = individual.fams
-           name = individual.name[0]
-
-           people = []
-           if lifeSpan > 30:
+    people=[]
+    currentDate=datetime.now()
+    for individual in individuals:
+        birthDate = individual.birthday
+        spouse = individual.fams
+        name = individual.name[0]
+        if birthDate!='NA':
+            lifeSpan = int(currentDate.strftime("%Y")) - int(birthDate.strftime("%Y"))
+            age = int(birthDate.strftime("%m"))
+            if (age > int(currentDate.strftime("%m"))) and int(birthDate.strftime("%d")) > int(currentDate.strftime("%d")):
+                age = lifeSpan
+            else:
+                age = lifeSpan-1
+            if lifeSpan > 30:
                #if I put any condition in spouse(if conition) then it is showing that errors found
-               if spouse:
-                   return_flag = False
-               else:
+                if spouse:
+                    pass
+                else:
                    people.append(name)
-                   return_flag = True
-   print(people)
-   return return_flag
-
+    print("\nUS31: List of people who are un married is:"  + str(people))
 #------------------------------------ US 31 END [KRUTARTH]-------------------------------
-
 #------------------------------------ US 16 START [KRUTARTH] -------------------------------------------
 #US16 All Male members of a family should have the same last name (surname)
 def US16_Male_last_names_should_be_same(individuals,families):
     
     return_flag = True
     error_type = "US16"
-    
     for families in families:
         if families.married:
             lastname = families.husbandName[1]
@@ -619,9 +597,7 @@ def US19_first_cousins(individuals,families):
 #------------------------------------ US 19 END ------------------------------------------- 
 
 #------------------------------------ US 20 START [GOPI]------------------------------- 
-    
 ## US20	Aunts and uncles should not marry their nieces or nephews
-    
 def US20_aunts_and_uncles(individuals,families):
     return_flag = True
     error_type="US20"
@@ -675,7 +651,7 @@ def US21_Correct_gender_for_role(individuals, families):
 
    return return_flag
 
-#------------------------------------ US 21 END [DEEP]-------------------------------
+#------------------------------------ US 21 END [DEEP]--------------------------------------
 #------------------------------------ US 22 START -------------------------------------------
 def US22_Unique_IDs(individuals, families):
     return_flag = True
@@ -730,7 +706,6 @@ def US23_Unique_name_birth_date(individuals,families):
 
    return return_flag
 #------------------------------------ US 23 END -------------------------------------------
-
 #------------------------------------ US 24 START [DHAVAL]----------------------------------
 def US24_Unique_families_by_spouses(families):
    return_flag = True
@@ -747,7 +722,6 @@ def US24_Unique_families_by_spouses(families):
 
    return return_flag
 #------------------------------------ US 24 END -------------------------------------------
-
 #------------------------------------ US 25 START [GOPI]----------------------------------
 ##US25	Unique first names in families	No more than one child with the same name and birth date should appear in a family
 
@@ -767,11 +741,9 @@ def US25_Unique_firstnames_families(individuals,families):
                        return_flag = False   
    return return_flag
        
-#------------------------------------ US 24 END -------------------------------------------
-   
+#------------------------------------ US 25 END -------------------------------------------
 #------------------------------------ US 35 START [GOPI]----------------------------------
 ##US35	List recent births	List all people in a GEDCOM file who were born in the last 30 days
-   
 def US35_list_recent_births(individuals):
     people_recent_birth=[]
     currentDate=datetime.now()
@@ -779,14 +751,58 @@ def US35_list_recent_births(individuals):
     for individual in individuals:
         if individual.birthday!= 'NA':     
             if individual.birthday <= currentDate.date() and individual.birthday >= dateBefore30Days.date():
-                people_recent_birth.append(individual.name)
+                people_recent_birth.append(individual.name[0])
     if people_recent_birth==[]:
         print('\n US35: No people found who born in the last 30 days\n')
     else:
         print('\nUS35: List of people who born in the last 30 days : ' + str(people_recent_birth))
 
-    
 #------------------------------------ US 35 END -------------------------------------------
+#------------------------------------ US 38 START [KRUTARTH]-------------------------------
+# US38 List all living people in a GEDCOM file whose birthdays occur in the next 30 da
+def US38_List_upcoming_birthdays(individuals):    
+    people=[]
+    currentDate=datetime.now()
+    for individual in individuals:
+        if individual.birthday!= 'NA':     
+            if individual.alive == True:
+                birthdate = individual.birthday
+                birthdate = datetime(currentDate.year,birthdate.month,birthdate.day)
+                upcoming_birthday=(birthdate - currentDate).days        
+            
+                if upcoming_birthday<= 30 and upcoming_birthday >= 0:
+                    people.append(individual.name[0])
+    if people==[]:
+        print('\nUS38: No people found who born in Coming 30 days\n')
+    else:
+        print('\nUS38: List of people who born in Coming 30 days: ' + str(people))
+#------------------------------------ US 38 END [KRUTARTH]-------------------------------   
+#------------------------------------ US 39 START [KRUTARTH]-------------------------------
+# US39 List all living couples in a GEDCOM file whose marriage anniversaries occur in the next 30 days
+def US39_List_upcoming_marriage_anniversary(individuals, families):    
+    people=[]
+    currentDate=datetime.today()
+    for individual in individuals:
+        if individual.alive == True:
+            name = individual.name
+            individualId = individual.uid
+            for family in families:
+                if family.married != 'NA':     
+                    husband = family.husbandID
+                    wife = family.wifeID
+                    marriageDate = family.married 
+                    Anniversary = datetime(currentDate.year,marriageDate.month,marriageDate.day)
+                    upcomingAnniversary = (Anniversary - currentDate).days
+                    if upcomingAnniversary<= 30 and upcomingAnniversary >= 0:
+                        if individualId == wife:
+                            people.append(name[0])
+                        if individualId == husband:
+                            people.append(name[0])
+    if people==[]:
+        print('\nUS39: No people found who has Anniversary in next 30 days\n')
+    else:
+        print('\nUS39: List of people who has Anniversary in next 30 days: ' + str(people))
+#------------------------------------ US 39 END [KRUTARTH]-------------------------------   
         
 ##############################       IMPLEMENTING  USER STORIES  END      ########################################
 
