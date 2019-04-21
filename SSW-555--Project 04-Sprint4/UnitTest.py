@@ -68,12 +68,10 @@ class test_UserStories(unittest.TestCase):
         #self.assertTrue(UserStories.US07(individuals))
         individuals = GedcomParser.gedcomParser()
         self.assertFalse(UserStories.US07(individuals))
-    
 
 # --------------------------- TESTING US_08 -------------------------------------------
         
     def test_US08(self):
-        
         print('TESTING US_08...')
         individuals, families = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US08_childbirth_after_marriage(individuals,families), False)
@@ -81,7 +79,6 @@ class test_UserStories(unittest.TestCase):
 # ------------------------------- TESTING US_09 -------------------------------------
 
     def test_US09(self):
-      
         print('TESTING US_09...')
         #individuals, families = GedcomParser.gedcomParser(passFile)
         #self.assertEqual(UserStories.US09_birth_before_death_of_parents(individuals,families), True)
@@ -90,7 +87,6 @@ class test_UserStories(unittest.TestCase):
         
 # --------------------------- TESTING US_10 ------------------------------------------
     def test_US10(self):
-       
         print('TESTING US_10...')
         individuals, families = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US10_marriage_age_14(individuals,families), False)    
@@ -140,14 +136,11 @@ class test_UserStories(unittest.TestCase):
     def test_US31(self):
         
         print('TESTING US_31...')
-        #individuals = GedcomParser.gedcomParser(passFile)
-        #self.assertEqual(UserStories.US31_List_living_single(individuals), True)
         individuals = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US31_List_living_single(individuals),False)     
 
-# ------------------------------- TESTING US_17 -------------------------------------
-    def test_US16(self):
-       
+# ------------------------------- TESTING US_16 -------------------------------------
+    def test_US16(self): 
         print('TESTING US_16...')
         individuals = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US16_Male_last_names_should_be_same(individuals,families),False)
@@ -155,7 +148,6 @@ class test_UserStories(unittest.TestCase):
 
 # ------------------------------- TESTING US_18 -------------------------------------
     def test_US18(self):
-       
         print('TESTING US_18...')
         individuals = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US18_no_sibling_should_marry_eachother(individuals, families),False)
@@ -163,21 +155,18 @@ class test_UserStories(unittest.TestCase):
 
 # ------------------------------- TESTING US_19 -------------------------------------
     def test_US19(self):
-       
         print('TESTING US_19...')
         individuals = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US19_first_cousins(individuals,families),False)
         
 # ------------------------------- TESTING US_20 -------------------------------------
     def test_US20(self):
-       
         print('TESTING US_19...')
         individuals = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US20_aunts_and_uncles(individuals,families),False)
 
 # ------------------------------- TESTING US_21 -------------------------------------
     def test_US21(self):
-       
         print('TESTING US_21...')
         individuals = GedcomParser.gedcomParser()
         self.assertEqual(UserStories.US21_Correct_gender_for_role(individuals, families),False)
@@ -217,6 +206,19 @@ class test_UserStories(unittest.TestCase):
         print('TESTING US_35...')
         families = GedcomParser.gedcomParser()
         self.assertFalse(UserStories.US35_list_recent_births(families))
+# ------------------------------- TESTING US_38 -------------------------------------
+    def test_US38(self):
+       
+        print('TESTING US_38...')
+        individuals = GedcomParser.gedcomParser()
+        self.assertFalse(UserStories.US38_List_upcoming_birthdays(individuals))
+
+# ------------------------------- TESTING US_39 -------------------------------------
+    def test_US39(self):
+       
+        print('TESTING US_39...')
+        families = GedcomParser.gedcomParser()
+        self.assertFalse(UserStories.US39_List_upcoming_marriage_anniversary(individuals,families))
 
 ##############################       UNIT TEST  END      #########################################
 
