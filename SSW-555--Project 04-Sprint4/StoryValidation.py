@@ -32,7 +32,6 @@ def story_validation(individuals, families):
     returnFlag_US13 = UserStories.US13_siblings_spacing(individuals, families)
     returnFlag_US14 = UserStories.US14_Multiple_births(individuals, families)
     returnFlag_US15 = UserStories.US15_Fewer_than_15_siblings(families)
-    returnFlag_US31 = UserStories.US31_List_living_single(individuals)
     returnFlag_US16 = UserStories.US16_Male_last_names_should_be_same(individuals,families)
     returnFlag_US18 = UserStories.US18_no_sibling_should_marry_eachother(individuals, families)
     returnFlag_US19 = UserStories.US19_first_cousins(individuals,families)
@@ -42,17 +41,19 @@ def story_validation(individuals, families):
     returnFlag_US23 = UserStories.US23_Unique_name_birth_date(individuals,families)
     returnFlag_US24 = UserStories.US24_Unique_families_by_spouses(families)
     returnFlag_US25 = UserStories.US25_Unique_firstnames_families(individuals,families)
+    UserStories.US31_List_living_single(individuals)
     UserStories.US35_list_recent_births(individuals)
+    UserStories.US38_List_upcoming_birthdays(individuals)
+    UserStories.US39_List_upcoming_marriage_anniversary(individuals,families)
     
     print('\n======================================================= Errors in User Stories ============================================================\n')
    
     returnFlags={'US01':returnFlag_US01,'US02':returnFlag_US02,'US03':returnFlag_US03,'US04':returnFlag_US04,
                  'US05':returnFlag_US05,'US06':returnFlag_US06,'US07':returnFlag_US07,'US08':returnFlag_US08,
                  'US09':returnFlag_US09,'US10':returnFlag_US10,'US11':returnFlag_US11,'US12':returnFlag_US12,
-                 'US13':returnFlag_US13,'US14':returnFlag_US14,'US15':returnFlag_US15,'US31':returnFlag_US31,
-                 'US16':returnFlag_US16,'US18':returnFlag_US18,'US19':returnFlag_US19,'US20':returnFlag_US20,
-                 'US21':returnFlag_US21,'US22':returnFlag_US22,'US23':returnFlag_US23,'US24':returnFlag_US24,
-                 'US25':returnFlag_US25}
+                 'US13':returnFlag_US13,'US14':returnFlag_US14,'US15':returnFlag_US15,'US16':returnFlag_US16,
+                 'US18':returnFlag_US18,'US19':returnFlag_US19,'US20':returnFlag_US20,'US21':returnFlag_US21,
+                 'US22':returnFlag_US22,'US23':returnFlag_US23,'US24':returnFlag_US24,'US25':returnFlag_US25}
                  
 
     errorsUserStories=[]
@@ -62,14 +63,5 @@ def story_validation(individuals, families):
     print('\nErrors found in below User Stories:\n')
     print(errorsUserStories)
     
-   
-   
     #print("\n* * * * * * * * * * * * * * * *  * * * * * * * * * *         ERRORS         * * * * * * * * * * * * * * * * * * * * * * * \n")
-
-
 ##############################       VALIDATING USER STORIES  END      #########################################
-    
-    
-    
-
-    
