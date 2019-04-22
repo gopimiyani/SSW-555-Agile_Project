@@ -53,13 +53,13 @@ from datetime import date,timedelta
 
         # Sprint 4
         US24	Unique families by spouses	             Dhaval
-        US36	List recent deaths	             Dhaval
-        US25	Unique first names in families	    Gopi
-        US35	List recent births	             Gopi
-        US38	List upcoming birthdays	             Krutarth
-        US39	List upcoming anniversaries	    Krutarth
-        US30	List living married	             Deep
-        US33	List orphans	                      Deep
+        US36	List recent deaths	                     Dhaval
+        US25	Unique first names in families	         Gopi
+        US35	List recent births	                     Gopi
+        US38	List upcoming birthdays	                 Krutarth
+        US39	List upcoming anniversaries	             Krutarth
+        US30	List living married	                     Deep
+        US33	List orphans	                         Deep
 
 """
 ##############################       IMPLEMENTING  USER STORIES  START      #######################################
@@ -831,6 +831,73 @@ def US36_List_recent_deaths(individuals, families):
     return return_flag
 
 #------------------------------------ US 36 END [DHAVAL]------------------------------- 
+
+#------------------------------------ US 30 START [DEEP]-------------------------------
+def US30_List_living_married(individuals, families):
+    return_flag = False
+    error_type = "US30"
+    for family in families:
+        hus = family.husbandID
+        wife = family.wifeID
+        count = 0
+        for individual in individuals:
+            if hus == individual.uid or wife == individual.uid:
+                if individual.alive == True:
+                    count = count + 1        
+
+
+        if count == 2 :
+            error_descrip = "Married and living"
+            error_location = family.uid
+            report_error('Family', error_type,error_descrip, error_location)
+            return_flag = False
+
+    if return_flag == True:
+        print('\nUS30: Unable to list living married')
+    
+    return return_flag
+
+#------------------------------------ US 30 END [DEEP]-------------------------------
+
+#------------------------------------ US 33 START [DEEP]-------------------------------
+def US33_List_orphans(individuals, families):
+    return_flag = False
+    error_type = "US33"
+    currentDate = datetime.now()
+    for family in families:
+        hus = family.husbandID
+        wife = family.wifeID
+        children = family.children
+        count = 0
+        for individual in individuals:
+            if hus == individual.uid or wife == individual.uid:
+                if individual.alive == False:
+                    count = count + 1
+
+        if count == 2:
+            for child in children:
+                for individual in individuals:
+                    if child == individual.uid:
+                        birthdate = individual.birthday
+                        birthdate = datetime(birthdate.year, birthdate.month, birthdate.day)
+                        age = (currentDate-birthdate).days/365.25
+                        if age < 18:
+                            error_descrip = 'orphan'
+                            error_location = individual.uid
+                            report_error('Person ', error_type, error_descrip, error_location)
+                            return_flag = False
+
+    if return_flag == True:
+        print('\nUS33: no orphans')
+
+    return return_flag
+                            
+
+                
+
+          
+
+#------------------------------------ US 33 END [DEEP]-------------------------------
 
 ##############################       IMPLEMENTING  USER STORIES  END      ########################################
 

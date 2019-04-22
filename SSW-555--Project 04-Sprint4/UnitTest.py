@@ -234,6 +234,21 @@ class test_UserStories(unittest.TestCase):
         families = GedcomParser.gedcomParser()
         self.assertFalse(UserStories.US36_List_recent_deaths(individuals,families))
 
+# ------------------------------- TESTING US_31 -------------------------------------
+    def test_US30(self):
+
+        print('TESTING US 31...')
+        families = GedcomParser.gedcomParser()
+        self.assertFalse(UserStories.US30_List_living_married(individuals, families))
+
+
+# ------------------------------- TESTING US_33 -------------------------------------
+    def test_US33(self):
+
+        print('TESTING US 33...')
+        families = GedcomParser.gedcomParser()
+        self.assertFalse(UserStories.US33_List_orphans(individuals, families))
+
 ##############################       UNIT TEST  END      #########################################
 
 
