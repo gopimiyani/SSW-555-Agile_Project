@@ -96,7 +96,7 @@ class test_UserStories(unittest.TestCase):
        
         print('TESTING US_11...')
         individuals, families = GedcomParser.gedcomParser()
-        self.assertEqual(UserStories.US11_no_bigamy(individuals,families), True)    
+        self.assertEqual(UserStories.US11_no_bigamy(individuals,families), False)    
         
 # --------------------------- TESTING US_12 -------------------------------------------NEW AFTER REFACTORING
         
@@ -220,7 +220,22 @@ class test_UserStories(unittest.TestCase):
         families = GedcomParser.gedcomParser()
         self.assertFalse(UserStories.US39_List_upcoming_marriage_anniversary(individuals,families))
 
+# ------------------------------- TESTING US_27 -------------------------------------
+    def test_US27(self):
+       
+        print('TESTING US_27...')
+        families = GedcomParser.gedcomParser()
+        self.assertFalse(UserStories.US27_List_individual_current_ages(individuals,families))
+
+# ------------------------------- TESTING US_36 -------------------------------------
+    def test_US36(self):
+       
+        print('TESTING US_36...')
+        families = GedcomParser.gedcomParser()
+        self.assertFalse(UserStories.US36_List_recent_deaths(individuals,families))
+
 ##############################       UNIT TEST  END      #########################################
+
 
 ##############################       MAIN METHOD START    ########################################
 

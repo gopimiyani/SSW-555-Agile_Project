@@ -508,7 +508,8 @@ def US31_List_living_single(individuals):
                     pass
                 else:
                    people.append(name)
-    print("\nUS31: List of people who are un married is:"  + str(people))
+    print("\nUS31: List of people who are un married is:"  + str(
+        ))
 #------------------------------------ US 31 END [KRUTARTH]-------------------------------
 #------------------------------------ US 16 START [KRUTARTH] -------------------------------------------
 #US16 All Male members of a family should have the same last name (surname)
@@ -804,6 +805,33 @@ def US39_List_upcoming_marriage_anniversary(individuals, families):
         print('\nUS39: List of people who has Anniversary in next 30 days: ' + str(people))
 #------------------------------------ US 39 END [KRUTARTH]-------------------------------   
         
+#------------------------------------ US 27 START [DHAVAL]-------------------------------
+def US27_List_individual_current_ages(individuals, families):    
+    return_flag=False
+    for individual in individuals:
+        if individual.alive == True and individual.birthday!='NA':
+            print('ID: '+str(individual.uid)+'Name: '+str(individual.name)+'Current Age:'+str(getAge(individual.uid))+', Gender:'+str(individual.gender))
+            return_flag=True
+    if return_flag==False:
+        print('\nUS27: Not listing current age for any individual!')        
+    return return_flag
+    
+#------------------------------------ US 27 END [DHAVAL]-------------------------------           
+
+#------------------------------------ US 36 START [DHAVAL]-------------------------------
+def US36_List_recent_deaths(individuals, families):    
+    return_flag=False
+    for individual in individuals:
+        if individual.alive == False:
+            if dates_within(datetime.now().date(),individual.deathDate,0,30,'days'):
+                print('Person with ID:'+individual.uid+' died in the past 30 days, death date:'+str(individual.deathDate))
+                return_flag=True
+    if return_flag==False:
+        print('\nUS36: Unable to list any recent deaths in the past 30 days!') 
+    return return_flag
+
+#------------------------------------ US 36 END [DHAVAL]------------------------------- 
+
 ##############################       IMPLEMENTING  USER STORIES  END      ########################################
 
 ##############################       REPORTING ERRORS  START      #########################################

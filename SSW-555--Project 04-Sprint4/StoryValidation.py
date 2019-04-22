@@ -45,7 +45,9 @@ def story_validation(individuals, families):
     UserStories.US35_list_recent_births(individuals)
     UserStories.US38_List_upcoming_birthdays(individuals)
     UserStories.US39_List_upcoming_marriage_anniversary(individuals,families)
-    
+    returnFlag_US27 = UserStories.US27_List_individual_current_ages(individuals,families)
+    returnFlag_US36 = UserStories.US36_List_recent_deaths(individuals,families)
+
     print('\n======================================================= Errors in User Stories ============================================================\n')
    
     returnFlags={'US01':returnFlag_US01,'US02':returnFlag_US02,'US03':returnFlag_US03,'US04':returnFlag_US04,
@@ -53,7 +55,8 @@ def story_validation(individuals, families):
                  'US09':returnFlag_US09,'US10':returnFlag_US10,'US11':returnFlag_US11,'US12':returnFlag_US12,
                  'US13':returnFlag_US13,'US14':returnFlag_US14,'US15':returnFlag_US15,'US16':returnFlag_US16,
                  'US18':returnFlag_US18,'US19':returnFlag_US19,'US20':returnFlag_US20,'US21':returnFlag_US21,
-                 'US22':returnFlag_US22,'US23':returnFlag_US23,'US24':returnFlag_US24,'US25':returnFlag_US25}
+                 'US22':returnFlag_US22,'US23':returnFlag_US23,'US24':returnFlag_US24,'US25':returnFlag_US25,
+                 'US27':returnFlag_US27,'US36':returnFlag_US36}
                  
 
     errorsUserStories=[]
