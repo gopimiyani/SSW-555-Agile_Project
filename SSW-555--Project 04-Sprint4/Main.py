@@ -8,7 +8,7 @@ Created on Tue Mar  5 17:48:53 2019
 
 import GedcomParser
 import StoryValidation
-import UnitTest
+
 
 
 ##############################       MAIN METHOD START    ########################################
@@ -19,8 +19,9 @@ if __name__ == '__main__':
     individuals, families = GedcomParser.gedcomParser()
     GedcomParser.printPrettyTable(individuals,families)
     StoryValidation.story_validation(individuals, families)
-    UnitTest.unittest.main()
+    
 
 
 ##############################       MAIN METHOD END    #########################################
 
+ 

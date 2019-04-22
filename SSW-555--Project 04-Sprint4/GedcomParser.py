@@ -199,5 +199,5 @@ def printPrettyTable(individual, families):
 if __name__ == '__main__':
     individual=[]
     families=[]
-    individual, families = gedcomParser(filename)
+    individual, families = gedcomParser()
     printPrettyTable(individual, families)

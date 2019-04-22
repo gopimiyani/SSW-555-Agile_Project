@@ -41,13 +41,13 @@ def story_validation(individuals, families):
     returnFlag_US23 = UserStories.US23_Unique_name_birth_date(individuals,families)
     returnFlag_US24 = UserStories.US24_Unique_families_by_spouses(families)
     returnFlag_US25 = UserStories.US25_Unique_firstnames_families(individuals,families)
-    UserStories.US31_List_living_single(individuals)
-    UserStories.US35_list_recent_births(individuals)
-    UserStories.US38_List_upcoming_birthdays(individuals)
-    UserStories.US39_List_upcoming_marriage_anniversary(individuals,families)
+    returnFlag_US31 = UserStories.US31_List_living_single(individuals)
+    returnFlag_US35 = UserStories.US35_list_recent_births(individuals)
+    returnFlag_US38 = UserStories.US38_List_upcoming_birthdays(individuals)
+    returnFlag_US39 = UserStories.US39_List_upcoming_marriage_anniversary(individuals,families)
     returnFlag_US27 = UserStories.US27_List_individual_current_ages(individuals,families)
     returnFlag_US36 = UserStories.US36_List_recent_deaths(individuals,families)
-    returnFlag_US31 = UserStories.US30_List_living_married(individuals, families)
+    returnFlag_US30 = UserStories.US30_List_living_married(individuals, families)
     returnFlag_US33 = UserStories.US33_List_orphans(individuals, families)
 
 
@@ -59,7 +59,9 @@ def story_validation(individuals, families):
                  'US13':returnFlag_US13,'US14':returnFlag_US14,'US15':returnFlag_US15,'US16':returnFlag_US16,
                  'US18':returnFlag_US18,'US19':returnFlag_US19,'US20':returnFlag_US20,'US21':returnFlag_US21,
                  'US22':returnFlag_US22,'US23':returnFlag_US23,'US24':returnFlag_US24,'US25':returnFlag_US25,
-                 'US27': returnFlag_US27, 'US36': returnFlag_US36, 'US31': returnFlag_US31, 'US33': returnFlag_US33}
+                 'US31':returnFlag_US31,'US35':returnFlag_US35,'US38':returnFlag_US38,'US39':returnFlag_US39,
+                 'US27':returnFlag_US27,'US36':returnFlag_US36, 
+                 'US30':returnFlag_US30, 'US33':returnFlag_US33}
                  
 
     errorsUserStories=[]

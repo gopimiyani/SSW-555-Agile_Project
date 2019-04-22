@@ -20,36 +20,36 @@ from datetime import date,timedelta
 ##############################       FUNCTIONS  START      #######################################
 """
     # Sprint 1
-    Story ID	Story-Name	                        Owner
-        US01	Dates before current date	               Dhaval
+    Story ID	Story-Name	                            Owner
+        US01	Dates before current date	           Dhaval
         US02	Birth before marriage	               Krutarth
-        US03	Birth before death	               Krutarth
+        US03	Birth before death	                   Krutarth
         US04	Marriage before divorce	               Gopi
         US05	Marriage before death	               Gopi
-        US06	Divorce before death	               Deep
+        US06	Divorce before death	                   Deep
         US07	Less then 150 years old	               Deep
-        US08	Birth before marriage of parents	      Dhaval
+        US08	Birth before marriage of parents	       Dhaval
 
 
         #Sprint 2
-        US09	Birth before death of parents	     Krutarth
-        US10	Marriage after 14	                       Dhaval
-        US11	No bigamy	                       Dhaval
-        US12	Parents not too old	              Gopi
-        US13	Siblings spacing	                       Gopi
-        US14	Multiple births <= 5	              Deep
+        US09	Birth before death of parents	      Krutarth
+        US10	Marriage after 14	                  Dhaval
+        US11	No bigamy	                          Dhaval
+        US12	Parents not too old	                  Gopi
+        US13	Siblings spacing	                      Gopi
+        US14	Multiple births <= 5	                  Deep
         US15	Fewer than 15 siblings	              Deep
-        US31	List living single	              Krutarth
+        US31	List living single	                  Krutarth
 
         #Sprint 3
         US16	Male last names	                       Krutarth
-        US18	Siblings should not marry                Krutarth
-        US19	First cousins should not marry	     Gopi
+        US18	Siblings should not marry              Krutarth
+        US19	First cousins should not marry	       Gopi
         US20	Aunts and uncles	                       Gopi
-        US21	Correct gender for role	              Deep
-        US22	Unique IDs	                       Deep
-        US23	Unique name and birth date	              Dhaval
-        US24	Unique families by spouses	              Dhaval
+        US21	Correct gender for role	               Deep
+        US22	Unique IDs	                           Deep
+        US23	Unique name and birth date	           Dhaval
+        US24	Unique families by spouses	           Dhaval
 
         # Sprint 4
         US24	Unique families by spouses	             Dhaval
@@ -59,7 +59,7 @@ from datetime import date,timedelta
         US38	List upcoming birthdays	                 Krutarth
         US39	List upcoming anniversaries	             Krutarth
         US30	List living married	                     Deep
-        US33	List orphans	                         Deep
+        US33	List orphans	                             Deep
 
 """
 ##############################       IMPLEMENTING  USER STORIES  START      #######################################
@@ -362,31 +362,131 @@ def US10_marriage_age_14(individuals,families):
 #------------------------------------ US 11 START [Dhaval]---------------------------------
 #Marriage should not occur during marriage to another spouse
 def US11_no_bigamy(individuals,families):
-   return_flag = True
-   error_type = "US11"
-  
-   for family in families:
-     if family.married != 'NA':
-       currentFamId=family.uid
-       for family2 in families:
-         if currentFamId!=family2.uid:
-           if family.husbandID==family2.husbandID or family.wifeID==family2.wifeID:
-             if family.married!='NA'and family2.married!='NA':
-                 if family.married<family2.married:
-                       if family.divorced!='NA' and family.divorced>family2.married:
-                         return_flag=False
-                         error_descrip = "Bigamy detected!"
-                         error_location = [family.uid,family2.uid]
-                         report_error('ERROR',error_type, error_descrip, error_location)
     
-                 if family.married>family2.married:
-                       if family.divorced!='NA' and family.divorced<family2.married:
-                         return_flag=False
-                         error_descrip = "Bigamy detected!"
-                         error_location = [family.uid,family2.uid]
-                         report_error('ERROR',error_type, error_descrip, error_location)
+    return_flag = True
+    error_type = "US11"
+    bigamy=[]
+    check = []
+    for family in families:
+        if family.married:
+            husband = None
+            wife = None
+            first_current_marriage = True
+            first_marriage_start = family.married
+            for indiv in individuals:
+                if indiv.uid == family.husbandID:
+                    husband = indiv
+                if indiv.uid == family.wifeID:
+                    wife = indiv
+            if family.divorced!=None:
+                first_current_marriage = False
+                first_marriage_end=family.divorced
 
-   return return_flag
+
+            else:
+                if wife.alive == False and husband.alive == False:
+                    if wife.deathDate < husband.deathDate:
+                        first_marriage_end = wife.deathDate
+                        first_current_marriage = False
+                    else:
+                        first_marriage_end = husband.deathDate
+                        first_current_marriage = False
+                else:
+                    if wife.alive==False:
+                        first_marriage_end=wife.deathDate
+                        first_current_marriage = False
+                    if husband.alive==False:
+                        first_marriage_end=husband.deathDate
+                        first_current_marriage = False
+
+            # Search through individuals to get husband and wife
+            for family2 in families:
+                #find the spouse
+                if family.married != family2.married:
+                    if family2.married:
+                        husband2 = None
+                        wife2 = None
+                        second_current_marriage = True
+                        second_marriage_start = family2.married
+                        for indiv1 in individuals:
+                            if indiv1.uid == family2.husbandID:
+                                husband2 = indiv1
+                            if indiv1.uid == family2.wifeID:
+                                wife2 = indiv1
+                        if family2.divorced != None:
+                            second_current_marriage = False
+                            second_marriage_end = family2.divorced
+                        else:
+                            if wife2.alive==False and husband2.alive==False:
+                                if wife2.deathDate<husband2.deathDate:
+                                    second_marriage_end = wife2.deathDate
+                                    second_current_marriage = False
+                                else:
+                                    second_marriage_end = husband2.deathDate
+                                    second_current_marriage = False
+                            else:
+                                if wife2.alive == False:
+                                    second_marriage_end = wife2.deathDate
+                                    second_current_marriage = False
+                                if husband2.alive == False:
+                                    second_marriage_end = husband2.deathDate
+                                    second_current_marriage = False
+                        if husband.uid==husband2.uid or wife.uid==wife2.uid:
+
+                            if first_current_marriage== True and second_current_marriage==True:
+                                if husband.uid==husband2.uid:
+                                    check.append((husband.uid))
+                                    for element in check:
+                                        if element not in bigamy:
+                                            bigamy.append((husband.uid))
+                                            error_descrip = "Bigamy Occurs in family"
+                                            error_location = [family.uid ,family2.uid,husband.uid]
+                                            report_error('ERROR',error_type, error_descrip, error_location)
+                                            return_flag = False
+                                if wife.uid==wife2.uid:
+                                    check.append((wife.uid))
+                                    for element in check:
+                                        if element not in bigamy:
+                                            bigamy.append((wife.uid))
+                                            error_descrip = "Bigamy Occurs in family"
+                                            error_location = [family.uid ,family2.uid, wife.uid]
+                                            report_error('ERROR',error_type, error_descrip, error_location)
+                                            return_flag = False
+                            else:
+                                if first_marriage_start!='NA' and second_marriage_start!='NA':
+                                    if first_marriage_start > second_marriage_start:
+                                        s_m_s = first_marriage_start
+                                        f_m_s = second_marriage_start
+                                        second_marriage_start=s_m_s
+                                        first_marriage_start=f_m_s
+                                        f_m_e=second_marriage_end
+                                        second_marriage_end=first_marriage_end
+                                        first_marriage_end=f_m_e
+
+                                if first_marriage_end != None  and second_marriage_end!=None:
+                                    if first_marriage_end!='NA' and second_marriage_start!='NA':
+                                        if first_marriage_end > second_marriage_start :
+                                            if husband.uid == husband2.uid:
+                                                check.append((husband.uid))
+                                                for element in check:
+                                                    if element not in bigamy:
+                                                        bigamy.append(( husband.uid))
+                                                        error_descrip = "Bigamy Occurs in family"
+                                                        error_location = [family.uid ,family2.uid ,husband.uid]
+                                                        report_error(error_type, error_descrip, error_location)
+                                                        return_flag = False
+                                            if wife.uid == wife2.uid:
+                                                check.append((wife.uid))
+                                                for element in check:
+                                                    if element not in bigamy:
+                                                        bigamy.append(( wife.uid))
+                                                        error_descrip = "Bigamy Occurs in families and the bigamist is "
+                                                        error_location = [family.uid ,family2.uid, wife.uid]
+                                                        report_error('ERROR',error_type, error_descrip, error_location)
+                                                        return_flag = False
+
+    return return_flag
+   
 #------------------------------------ US 11 END -------------------------------------------
     
 #------------------------------------ US 12 START [GOPI]----------------------------------
@@ -409,13 +509,13 @@ def US12_parents_not_too_old(individuals, families):
         for childID,childBirthday in birthday_childs.items():
                 return_flag =  not dates_within(birthday_husband,childBirthday ,0,79,'years')
                 if return_flag==False:
-                    error_descrip = "Husband (Id,Age: " + family.husbandID + ', ' + str(getAge(family.husbandID)) + ") is >80 years than his children(Id,Age: " + childID + ', ' + str(getAge(childID)) + ')\n'
+                    error_descrip = "Husband (Id,Age: " + family.husbandID + ', ' + str(getAge(family.husbandID)) + ") is >80 years than his children(Id,Age: " + childID + ', ' + str(getAge(childID)) + ')'
                     error_location = [family.husbandID]
                     report_error('ERROR',error_type, error_descrip, error_location)
                     return return_flag
                 return_flag = not dates_within(birthday_wife,childBirthday,0,59,'years')
                 if return_flag==False:
-                    error_descrip = "Wife (Id,Age: "+ family.wifeID + ', '  + str(getAge(family.wifeID)) + ") is >60 years than her children (Id,Age: " + childID + ', ' + str(getAge(childID)) + ')\n'
+                    error_descrip = "Wife (Id,Age: "+ family.wifeID + ', '  + str(getAge(family.wifeID)) + ") is >60 years than her children (Id,Age: " + childID + ', ' + str(getAge(childID)) + ')'
                     error_location = [family.wifeID]
                     report_error('ERROR',error_type, error_descrip, error_location)
                     return return_flag
@@ -446,30 +546,28 @@ def US13_siblings_spacing(individuals, families):
 #------------------------------------ US 13 END ------------------------------------------
 #------------------------------------ US 14 START [DEEP]----------------------------------
 def US14_Multiple_births(individuals, families):
-    return_flag = True
-    error_type = "US14"
-    for family in families:
-        birthdays = []
-        children = family.children
-        Number_of_children = len(children)
-        if Number_of_children > 5:
-            for child in children:
-                for individual in individuals:
-                    if (child == individual.uid):
-                        birthdays.append(individual.birthday)
-                
-            for birthC in birthdays:
-                count=0
-                for birth1 in birthdays:
-                    if birthC == birth1:
-                        #print(birthC)
-                        count = count + 1
-                        if count >= 5:
-                            error_descrip = "Multiple births"
-                            error_location = [individual.uid]
-                            report_error('ERROR', error_type,error_descrip, error_location)
-                            return_flag = False            
-    return return_flag
+   return_flag = True
+   error_type = "US14"
+   for family in families:
+       birthdays = []
+       children = family.children
+       Number_of_children = len(children)
+       if Number_of_children > 5:
+           for child in children:
+               for individual in individuals:
+                   if (child == individual.uid):
+                       birthdays.append(individual.birthday)
+           for birthC in birthdays:
+               count = 1
+               for birth1 in birthdays:
+                   if birthC == birth1:
+                       count = count + 1
+               if count >= 5:
+                   error_descrip = "Multiple births"
+                   error_location = [family.uid]
+                   report_error('ERROR', error_type,error_descrip, error_location)
+                   return_flag = False
+   return return_flag
 #------------------------------------ US 14 END ------------------------------------------   
 #------------------------------------ US 15 START [DEEP]----------------------------------
 def US15_Fewer_than_15_siblings(families):
@@ -489,6 +587,8 @@ def US15_Fewer_than_15_siblings(families):
 #------------------------------------ US 31 START [KRUTARTH]-------------------------------
 # US31 List all living people over 30 who have never been married in a GEDCOM file
 def US31_List_living_single(individuals):
+    return_flag = True
+    error_type = "US31"
     people=[]
     currentDate=datetime.now()
     for individual in individuals:
@@ -508,8 +608,13 @@ def US31_List_living_single(individuals):
                     pass
                 else:
                    people.append(name)
-    print("\nUS31: List of people who are un married is:"  + str(
-        ))
+    if people!=[]:
+        error_descrip = "List of people who are un married is: " + str(people)
+     
+        report_list('LIST', error_type, error_descrip)
+        return_flag = False   
+    return return_flag 
+   
 #------------------------------------ US 31 END [KRUTARTH]-------------------------------
 #------------------------------------ US 16 START [KRUTARTH] -------------------------------------------
 #US16 All Male members of a family should have the same last name (surname)
@@ -589,7 +694,7 @@ def US19_first_cousins(individuals,families):
                     wife=str(f.wifeID)
                     if husband in family_cousins or wife in family_cousins:
                          return_flag = False
-                         error_descrip =str(f.husbandName) +"(ID:"+ husband+ ")married to his cousin " +str( f.wifeName )+ "(ID:" + wife+")\n"
+                         error_descrip =str(f.husbandName) +"married to his cousin " +str( f.wifeName )
                          error_location = [f.husbandID]
                          report_error('ERROR',error_type, error_descrip, error_location)
                          return return_flag
@@ -619,7 +724,7 @@ def US20_aunts_and_uncles(individuals,families):
                     wife=str(f.wifeID)
                     if husband in family_uncles_aunts[family] or wife in family_uncles_aunts[family]:
                          return_flag = False
-                         error_descrip =str(f.husbandName) +"(ID:"+ husband+ ")married to his niece or nephew " +str( f.wifeName )+ "(ID:" + wife+")\n"
+                         error_descrip =str(f.husbandName) +"married to his niece or nephew " +str( f.wifeName )
                          error_location = [f.husbandID]
                          report_error('ERROR',error_type, error_descrip, error_location)
                          return return_flag
@@ -655,38 +760,42 @@ def US21_Correct_gender_for_role(individuals, families):
 #------------------------------------ US 21 END [DEEP]--------------------------------------
 #------------------------------------ US 22 START -------------------------------------------
 def US22_Unique_IDs(individuals, families):
-    return_flag = True
-    error_type = "US22"
-    familyID = []
-    for family in families:
-        familyID.append(family.uid)
+   return_flag = True
+   error_type = "US22"
+   familyID = []
+   for family in families:
+       familyID.append(family.uid)
 
-    for birthC in familyID:
-        count = 0
-        for birth1 in familyID:
-            if birthC == birth1:
-                count = count + 1
-                if count > 1:
-                    error_descrip = "Multiple births"
-                    error_location = birthC
-                    report_error('ERROR', error_type,error_descrip, error_location)
-                    return_flag = False
-    individualID=[]
+   for id in familyID:
+       count = 0
+       for id1 in familyID:
+           if id == id1:
+               count = count + 1
 
-    for individual in individuals:
-        individualID.append(individual.uid)
-        for birthC in individualID:
-            count = 0
-            for birth1 in individualID:
-                if birthC == birth1:
-                    count = count + 1
-                    if count > 1:
-                        error_descrip = "Multiple births"
-                        error_location = birthC
-                        report_error('ERROR', error_type,
-                                        error_descrip, error_location)
-                        return_flag = False
-    return return_flag
+       if count > 1:
+           error_descrip = "same id"
+           error_location = id
+           report_error('ERROR', error_type,error_descrip, error_location)
+           return_flag = False
+
+
+   individualID=[]
+   for individual in individuals:
+       individualID.append(individual.uid)
+
+
+   for id in individualID:
+       count = 0
+       for id1 in individualID:
+           if id == id1:
+               count = count + 1
+
+       if count > 1:
+           error_descrip = "same id"
+           error_location = id
+           report_error('ERROR', error_type,error_descrip, error_location)
+           return_flag = False
+   return return_flag
 
 #------------------------------------ US 22 END [DEEP]-------------------------------
 
@@ -746,22 +855,28 @@ def US25_Unique_firstnames_families(individuals,families):
 #------------------------------------ US 35 START [GOPI]----------------------------------
 ##US35	List recent births	List all people in a GEDCOM file who were born in the last 30 days
 def US35_list_recent_births(individuals):
+    return_flag = True
+    error_type = "US35"
     people_recent_birth=[]
     currentDate=datetime.now()
     dateBefore30Days=currentDate+timedelta(-30)
     for individual in individuals:
         if individual.birthday!= 'NA':     
             if individual.birthday <= currentDate.date() and individual.birthday >= dateBefore30Days.date():
-                people_recent_birth.append(individual.name[0])
-    if people_recent_birth==[]:
-        print('\n US35: No people found who born in the last 30 days\n')
-    else:
-        print('\nUS35: List of people who born in the last 30 days : ' + str(people_recent_birth))
+                people_recent_birth.append(individual.name)
+    if people_recent_birth!=[]:
+        error_descrip = "List of people who born in the last 30 days :" +str(people_recent_birth)
+       
+        report_list('LIST', error_type, error_descrip)
+        return_flag = False   
+    return return_flag
 
 #------------------------------------ US 35 END -------------------------------------------
 #------------------------------------ US 38 START [KRUTARTH]-------------------------------
 # US38 List all living people in a GEDCOM file whose birthdays occur in the next 30 da
 def US38_List_upcoming_birthdays(individuals):    
+    return_flag = True
+    error_type = "US38"
     people=[]
     currentDate=datetime.now()
     for individual in individuals:
@@ -773,14 +888,19 @@ def US38_List_upcoming_birthdays(individuals):
             
                 if upcoming_birthday<= 30 and upcoming_birthday >= 0:
                     people.append(individual.name[0])
-    if people==[]:
-        print('\nUS38: No people found who born in Coming 30 days\n')
-    else:
-        print('\nUS38: List of people who born in Coming 30 days: ' + str(people))
+    if people!=[]:
+        error_descrip = "List of people who born in Coming 30 days:" +str(people)
+     
+        report_list('LIST', error_type, error_descrip)
+        return_flag = False   
+    return return_flag 
+        
 #------------------------------------ US 38 END [KRUTARTH]-------------------------------   
 #------------------------------------ US 39 START [KRUTARTH]-------------------------------
 # US39 List all living couples in a GEDCOM file whose marriage anniversaries occur in the next 30 days
 def US39_List_upcoming_marriage_anniversary(individuals, families):    
+    return_flag = True
+    error_type = "US39"
     people=[]
     currentDate=datetime.today()
     for individual in individuals:
@@ -799,41 +919,56 @@ def US39_List_upcoming_marriage_anniversary(individuals, families):
                             people.append(name[0])
                         if individualId == husband:
                             people.append(name[0])
-    if people==[]:
-        print('\nUS39: No people found who has Anniversary in next 30 days\n')
-    else:
-        print('\nUS39: List of people who has Anniversary in next 30 days: ' + str(people))
+    if people!=[]:
+        error_descrip = "List of people who has Anniversary in next 30 days: " + str(people)
+        report_list('LIST', error_type, error_descrip)
+        return_flag = False   
+    return return_flag 
 #------------------------------------ US 39 END [KRUTARTH]-------------------------------   
         
 #------------------------------------ US 27 START [DHAVAL]-------------------------------
 def US27_List_individual_current_ages(individuals, families):    
-    return_flag=False
+    return_flag=True
+    error_type = "US27"
+    list_individual=[]
+    
     for individual in individuals:
         if individual.alive == True and individual.birthday!='NA':
-            print('ID: '+str(individual.uid)+'Name: '+str(individual.name)+'Current Age:'+str(getAge(individual.uid))+', Gender:'+str(individual.gender))
-            return_flag=True
-    if return_flag==False:
-        print('\nUS27: Not listing current age for any individual!')        
-    return return_flag
-    
+            listItem='ID: '+str(individual.uid)+'\tName: '+str(individual.name)+'\tCurrent Age:'+str(getAge(individual.uid))+',\tGender:'+str(individual.gender)
+            list_individual.append(str(listItem))
+    if list_individual!=[]:
+        string=""
+        for item in list_individual:
+            string=string+item+'\n'
+        error_descrip = "Below is listing of Individuals with current age: \n\n" + string
+        report_list('LIST', error_type, error_descrip)
+        return_flag = False   
+        return return_flag 
+    return return_flag 
 #------------------------------------ US 27 END [DHAVAL]-------------------------------           
 
 #------------------------------------ US 36 START [DHAVAL]-------------------------------
 def US36_List_recent_deaths(individuals, families):    
-    return_flag=False
+    return_flag=True
+    error_type = "US36"
+    people=[]
     for individual in individuals:
         if individual.alive == False:
             if dates_within(datetime.now().date(),individual.deathDate,0,30,'days'):
-                print('Person with ID:'+individual.uid+' died in the past 30 days, death date:'+str(individual.deathDate))
-                return_flag=True
-    if return_flag==False:
-        print('\nUS36: Unable to list any recent deaths in the past 30 days!') 
+                people.append(individual.name)
+    if people!=[]:
+        error_descrip = "List of people died in last 30 days: " + str(people)
+      
+        report_list('LIST', error_type, error_descrip)
+        return_flag = False   
     return return_flag
 
 #------------------------------------ US 36 END [DHAVAL]------------------------------- 
 
 #------------------------------------ US 30 START [DEEP]-------------------------------
+##List all living married people in a GEDCOM file
 def US30_List_living_married(individuals, families):
+    living_married=[]
     return_flag = False
     error_type = "US30"
     for family in families:
@@ -844,26 +979,25 @@ def US30_List_living_married(individuals, families):
             if hus == individual.uid or wife == individual.uid:
                 if individual.alive == True:
                     count = count + 1        
-
-
         if count == 2 :
-            error_descrip = "Married and living"
-            error_location = family.uid
-            report_error('Family', error_type,error_descrip, error_location)
-            return_flag = False
-
-    if return_flag == True:
-        print('\nUS30: Unable to list living married')
-    
+            living_married.append(family.husbandName[0])
+            living_married.append(family.wifeName[0])
+    if living_married!=[]:
+            error_descrip = "List of Married_living: "+str(living_married)
+          
+            report_list('LIST', error_type,error_descrip)
+            return_flag = False    
     return return_flag
 
 #------------------------------------ US 30 END [DEEP]-------------------------------
 
 #------------------------------------ US 33 START [DEEP]-------------------------------
+## List all orphaned children (both parents dead and child < 18 years old) in a GEDCOM file
 def US33_List_orphans(individuals, families):
     return_flag = False
     error_type = "US33"
     currentDate = datetime.now()
+    orphans=[]
     for family in families:
         hus = family.husbandID
         wife = family.wifeID
@@ -882,14 +1016,14 @@ def US33_List_orphans(individuals, families):
                         birthdate = datetime(birthdate.year, birthdate.month, birthdate.day)
                         age = (currentDate-birthdate).days/365.25
                         if age < 18:
-                            error_descrip = 'orphan'
-                            error_location = individual.uid
-                            report_error('Person ', error_type, error_descrip, error_location)
-                            return_flag = False
-
-    if return_flag == True:
-        print('\nUS33: no orphans')
-
+                            orphans.append(individual.name)
+                            
+    if orphans!=[]:
+        error_descrip = 'List of Orphans: '+str(orphans)
+        
+        report_list('LIST ', error_type, error_descrip)
+        return_flag = False                                                
+    
     return return_flag
                             
 
@@ -910,10 +1044,16 @@ def report_error(rtype, error_type, description, locations):
         if isinstance(locations, list):
             locations = ','.join(locations)
 
-        estr = '{:10.10s} {:15.15s}  {:95.95s}    {:20.20s}' \
+        estr = '{:10.10s} {:10.5s}  {:105.105s}    {:40.40s}' \
             .format(rtype, error_type, description, locations)
         print(estr)
         error_locations.extend(locations)
+        
+        
+def report_list(rtype, error_type, description):
+
+        print('\n'+rtype+'\t   '+error_type+'\t\t'+description)
+       
 
 ##############################       REPORTING ERRORS  END      #########################################
 
