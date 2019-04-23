@@ -362,6 +362,39 @@ def US10_marriage_age_14(individuals,families):
 #------------------------------------ US 11 START [Dhaval]---------------------------------
 #Marriage should not occur during marriage to another spouse
 def US11_no_bigamy(individuals,families):
+    return_flag = True
+    error_type = "US11"
+
+    for family in families:
+        if family.married != 'NA':
+            currentFamId = family.uid
+        for family2 in families:
+            if currentFamId!=family2.uid:
+                if family.husbandID == family2.husbandID or family.wifeID == family2.wifeID:
+                    if family.married!='NA'and family2.married != 'NA':
+                        if family.married < family2.married:
+                            if family.divorced!='NA' and family.divorced > family2.married:
+                                return_flag=False
+                                error_descrip = "Bigamy detected!"
+                                error_location = [family.uid,family2.uid]
+                                report_error('ERROR',error_type, error_descrip, error_location)
+
+                if family.married!='NA' and family2.married !='NA': 
+                    if family.married > family2.married:
+                        if family.divorced != 'NA':
+                            if family.divorced < family2.married:
+                                return_flag=False
+                                error_descrip = "Bigamy detected!"
+                                error_location = [family.uid,family2.uid]
+                                report_error('ERROR',error_type, error_descrip, error_location)
+
+    return return_flag
+
+
+
+
+"""
+def US11_no_bigamy(individuals,families):
     
     return_flag = True
     error_type = "US11"
@@ -398,40 +431,6 @@ def US11_no_bigamy(individuals,families):
                     if husband.alive==False:
                         first_marriage_end=husband.deathDate
                         first_current_marriage = False
-
-            # Search through individuals to get husband and wife
-            for family2 in families:
-                #find the spouse
-                if family.married != family2.married:
-                    if family2.married:
-                        husband2 = None
-                        wife2 = None
-                        second_current_marriage = True
-                        second_marriage_start = family2.married
-                        for indiv1 in individuals:
-                            if indiv1.uid == family2.husbandID:
-                                husband2 = indiv1
-                            if indiv1.uid == family2.wifeID:
-                                wife2 = indiv1
-                        if family2.divorced != None:
-                            second_current_marriage = False
-                            second_marriage_end = family2.divorced
-                        else:
-                            if wife2.alive==False and husband2.alive==False:
-                                if wife2.deathDate<husband2.deathDate:
-                                    second_marriage_end = wife2.deathDate
-                                    second_current_marriage = False
-                                else:
-                                    second_marriage_end = husband2.deathDate
-                                    second_current_marriage = False
-                            else:
-                                if wife2.alive == False:
-                                    second_marriage_end = wife2.deathDate
-                                    second_current_marriage = False
-                                if husband2.alive == False:
-                                    second_marriage_end = husband2.deathDate
-                                    second_current_marriage = False
-                        if husband.uid==husband2.uid or wife.uid==wife2.uid:
 
                             if first_current_marriage== True and second_current_marriage==True:
                                 if husband.uid==husband2.uid:
@@ -486,7 +485,7 @@ def US11_no_bigamy(individuals,families):
                                                         return_flag = False
 
     return return_flag
-   
+"""   
 #------------------------------------ US 11 END -------------------------------------------
     
 #------------------------------------ US 12 START [GOPI]----------------------------------
@@ -1025,12 +1024,7 @@ def US33_List_orphans(individuals, families):
         return_flag = False                                                
     
     return return_flag
-                            
-
-                
-
-          
-
+                    
 #------------------------------------ US 33 END [DEEP]-------------------------------
 
 ##############################       IMPLEMENTING  USER STORIES  END      ########################################
@@ -1054,7 +1048,4 @@ def report_list(rtype, error_type, description):
 
         print('\n'+rtype+'\t   '+error_type+'\t\t'+description)
        
-
 ##############################       REPORTING ERRORS  END      #########################################
-
-
