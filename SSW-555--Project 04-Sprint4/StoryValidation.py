@@ -50,7 +50,6 @@ def story_validation(individuals, families):
     returnFlag_US30 = UserStories.US30_List_living_married(individuals, families)
     returnFlag_US33 = UserStories.US33_List_orphans(individuals, families)
 
-
     print('\n======================================================= Errors in User Stories ============================================================\n')
    
     returnFlags={'US01':returnFlag_US01,'US02':returnFlag_US02,'US03':returnFlag_US03,'US04':returnFlag_US04,
@@ -60,16 +59,14 @@ def story_validation(individuals, families):
                  'US18':returnFlag_US18,'US19':returnFlag_US19,'US20':returnFlag_US20,'US21':returnFlag_US21,
                  'US22':returnFlag_US22,'US23':returnFlag_US23,'US24':returnFlag_US24,'US25':returnFlag_US25,
                  'US31':returnFlag_US31,'US35':returnFlag_US35,'US38':returnFlag_US38,'US39':returnFlag_US39,
-                 'US27':returnFlag_US27,'US36':returnFlag_US36, 
-                 'US30':returnFlag_US30, 'US33':returnFlag_US33}
-                 
-
+                 'US27':returnFlag_US27,'US36':returnFlag_US36,'US30':returnFlag_US30,'US33':returnFlag_US33}
+ 
     errorsUserStories=[]
     for key,value in returnFlags.items():
         if value==False:
             errorsUserStories.append(key)
     print('\nErrors found in below User Stories:\n')
     print(errorsUserStories)
-    
+   
     #print("\n* * * * * * * * * * * * * * * *  * * * * * * * * * *         ERRORS         * * * * * * * * * * * * * * * * * * * * * * * \n")
 ##############################       VALIDATING USER STORIES  END      #########################################
